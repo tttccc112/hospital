@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b55cacf9-5952-49e7-80de-9f388d8da9bf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/migrations/0003_auto_20210421_0109.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/migrations/0004_auto_20210421_0119.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient/migrations/0002_auto_20210421_0109.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hospital.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/85bdeffd-bb39-41b1-8cb2-e5dcb44168d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/85bdeffd-bb39-41b1-8cb2-e5dcb44168d8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hospital/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patient/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +129,8 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.data.extractors.current.export.id" value="CSV-Groovy.csv.groovy" />
+    <property name="database.data.extractors.current.id" value="CSV-Groovy.csv.groovy" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -213,6 +205,7 @@
       <updated>1618566524905</updated>
       <workItem from="1618885214580" duration="7055000" />
       <workItem from="1618908972689" duration="7218000" />
+      <workItem from="1618979508697" duration="5364000" />
     </task>
     <servers />
   </component>

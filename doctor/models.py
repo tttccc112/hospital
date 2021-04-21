@@ -1,6 +1,16 @@
 from django.db import models
 # Create your models here.
 
+class Remark(models.Model):
+    """
+    D2 医生评价信息
+    """
+    remark_id = models.CharField(max_length=50,primary_key=True,verbose_name="评价id")
+    diagnose_id = models.ForeignKey("patient.Diagnose",on_delete=models.CASCADE,verbose_name="诊断id")
+    remark_date = models.DateField(verbose_name="评价时间")
+    remark = models.TextField(verbose_name="评价内容")
+    score = models.FloatField(verbose_name="评价得分")
+
 class Department(models.Model):
     """
     D3 科室表
@@ -80,7 +90,7 @@ class DoctorBase(models.Model):
         return cls.objects.all()
 
 # why 9 12 no migratoins
-class Check:
+class Check(models.Model):
     """
     D9 检查信息
     """
@@ -90,7 +100,7 @@ class Check:
         (CHEST_PAIN,'胸痛'),
         (CHEST_NORMAL,'正常')
     )
-    report_id = models.CharField(max_length=50,primary_key=True,verbose_name="检查细则")
+    report_id = models.CharField(max_length=50,primary_key=True,verbose_name="检查id")
     diagnose_id = models.ForeignKey("patient.Diagnose",on_delete=models.CASCADE,verbose_name="诊断id")
     pid = models.ForeignKey("patient.PatientBase",on_delete=models.CASCADE,verbose_name="病人号")
     check_list = models.CharField(max_length=100,verbose_name="检查内容")
@@ -105,7 +115,7 @@ class Check:
         return cls.objects.all()
 
 
-class CheckDetail:
+class CheckDetail(models.Model):
     """
     D12 检查细则
     """
@@ -121,5 +131,8 @@ class CheckDetail:
     @classmethod
     def get_all(cls):
         return cls.objects.all()
+
+
+
 
 
