@@ -7,3 +7,6 @@ def test():
 
 def test2():
     print("hello world!")
+    
+def test3():
+    print('?')
