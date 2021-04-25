@@ -133,6 +133,22 @@ class CheckDetail(models.Model):
         return cls.objects.all()
 
 
+class Roster(models.Model):
+    """
+    D14 排班表
+    """
+    doc_id = models.ForeignKey("DoctorBase",on_delete=models.CASCADE,verbose_name="医生号")
+    remain = models.IntegerField(default=20,verbose_name="剩余号")
+    reservations = models.CharField(max_length=100,verbose_name="预约列表")
+
+    class Meta:
+        verbose_name = verbose_name_plural = "排班表"
+
+    @classmethod
+    def get_all(cls):
+        return cls.objects.all()
+
+
 
 
 

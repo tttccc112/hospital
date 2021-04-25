@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b55cacf9-5952-49e7-80de-9f388d8da9bf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/85bdeffd-bb39-41b1-8cb2-e5dcb44168d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/85bdeffd-bb39-41b1-8cb2-e5dcb44168d8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +130,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="CSV-Groovy.csv.groovy" />
     <property name="database.data.extractors.current.id" value="CSV-Groovy.csv.groovy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Django/day2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -206,6 +206,7 @@
       <workItem from="1618885214580" duration="7055000" />
       <workItem from="1618908972689" duration="7218000" />
       <workItem from="1618979508697" duration="5364000" />
+      <workItem from="1619333550807" duration="5403000" />
     </task>
     <servers />
   </component>
