@@ -32,8 +32,8 @@ class Register(models.Model):
 class Fee(models.Model):
     """D7 收费流水信息"""
     fee_id = models.IntegerField(primary_key=True,verbose_name="收费单id")
-    diagnose_id = models.ForeignKey("Diagnose",on_delete=models.CASCADE, verbose_name="诊断id")
-    register_id = models.ForeignKey("Register", on_delete=models.CASCADE, verbose_name="挂号id")
+    diagnose_id = models.ForeignKey("Diagnose",on_delete=models.CASCADE, verbose_name="诊断id",blank=True,null=True)
+    register_id = models.ForeignKey("Register", on_delete=models.CASCADE, verbose_name="挂号id",blank=True,null=True)
     fee_content = models.CharField(max_length=200,verbose_name="收费明细")
     fee_total = models.FloatField(verbose_name="收费金额")
     fee_date = models.DateField(verbose_name="收费时间")
@@ -55,8 +55,10 @@ class Diagnose(models.Model):
     pid = models.ForeignKey("PatientBase",on_delete=models.CASCADE,verbose_name="病人号")
     diagnose_text = models.TextField(verbose_name="诊断信息",null=True,blank=True)
     diagnose_date = models.DateField(verbose_name="诊断时间")
-    medicine_id = models.ForeignKey("Prescribe",on_delete=models.CASCADE,verbose_name="开药id")
-    report_id = models.ForeignKey("doctor.Check",on_delete=models.CASCADE,verbose_name="检查id",default="REPORT0")  # why default must??
+    #medicine_id = models.ForeignKey("Prescribe",on_delete=models.CASCADE,verbose_name="开药id")
+    #report_id = models.ForeignKey("doctor.Check",on_delete=models.CASCADE,verbose_name="检查id",default="REPORT0")  # why default must??
+    medicine_id = models.CharField(max_length=50,verbose_name="开药id")
+    report_id = models.CharField(max_length=50,verbose_name="检查id",default="REPORT0")
     fee_id = models.CharField(max_length=100,verbose_name="收费id")
 
     class Meta:

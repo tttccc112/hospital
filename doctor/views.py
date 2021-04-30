@@ -7,22 +7,12 @@ from doctor import models
 from doctor.models import Remark,Department,Medicine,\
     CheckItem,DoctorBase,Check,CheckDetail,Roster
 
-
-
 import xlrd
 
 
 # Create your views here.
 def test():
     print("hello world")
-
-
-# def load(file):
-#     data = xlrd.open_workbook("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\"+file)
-#     table = data.sheets()[0]
-#     nrows = table.nrows
-#     return table,nrows
-
 
 def load3(request):
     """
