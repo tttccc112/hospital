@@ -86,9 +86,12 @@ def load7(request):
     for ind,row in data.iterrows():
         fee_id,register_id_id,diagnose_id_id,fee_content,fee_total,fee_date \
                 = row[0],row[1],row[2],row[3],row[4],row[5]
+        #print(fee_id,register_id_id,diagnose_id_id,fee_content,fee_total,fee_date)
         FeeList.append(models.Fee(fee_id=fee_id,register_id_id=register_id_id,
                                   diagnose_id_id=diagnose_id_id,fee_content=fee_content,
                                   fee_total=fee_total,fee_date=fee_date))
+        # FeeList.append(models.Fee(fee_id=fee_id,diagnose_id_id=diagnose_id_id,fee_content=fee_content,
+        #                           fee_total=fee_total, fee_date=fee_date))
     Fee.objects.bulk_create(FeeList)
     return HttpResponse("D7完成!")
 
@@ -122,3 +125,31 @@ def load11(request):
             PatientBaseList.append(models.PatientBase(pid=pid,pname=pname,pgender=pgender,pbirth=pbirth,password=password))
     PatientBase.objects.bulk_create(PatientBaseList)
     return HttpResponse("D11完成!")
+
+def setnone(x):
+    if x!=x:
+        return None
+    else:
+        return x
+
+def load13(request):
+    """
+    D13 患者身体信息
+    """
+    PatientHealthList = []
+    data = pd.read_excel("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D13患者身体信息.xls")
+    # Cannot assign ... must be a ... instance  可能是漏了_id_id
+    for ind,row in data.iterrows():
+        pid,pdate,pgender,page,low_bp,high_bp,ast,alat,tp,alb,glb,ag,tg,tc,\
+        glc,hdl,ldl,cre,tt,fg,aptt,pt,ck,ckmb,cTnI,ct,stt,stup,std,q = \
+        row[0],row[1],row[2],row[3],setnone(row[4]),setnone(row[5]),setnone(row[6]),setnone(row[7]),setnone(row[8]),setnone(row[9]),setnone(row[10]),\
+        setnone(row[11]),setnone(row[12]),setnone(row[13]),setnone(row[14]),setnone(row[15]),setnone(row[16]),setnone(row[17]),setnone(row[18]),setnone(row[19]),setnone(row[20]),\
+        setnone(row[21]),setnone(row[22]),setnone(row[23]),setnone(row[24]),row[25],row[26],row[27],row[28],row[29]
+        # print(pid,pdate,pgender,page,low_bp,high_bp,ast,alat,tp,alb,glb,ag,tg,tc,\
+        #     glc,hdl,ldl,cre,tt,fg,aptt,pt,ck,ckmb,cTnI,ct,stt,stup,std,q)
+        PatientHealthList.append(models.PatientHealth(pid_id=pid,pdate=pdate,pgender=pgender,page=page,low_bp=low_bp,high_bp=high_bp,
+                                                      ast=ast,alat=alat,tp=tp,alb=alb,glb=glb,ag=ag,tg=tg,tc=tc,glc=glc,hdl=hdl,ldl=ldl,
+                                                      cre=cre,tt=tt,fg=fg,aptt=aptt,pt=pt,ck=ck,ckmb=ckmb,cTnI=cTnI,ct=ct,stt=stt,
+                                                      stup=stup,std=std,q=q))
+    PatientHealth.objects.bulk_create(PatientHealthList)
+    return HttpResponse("D13完成!")

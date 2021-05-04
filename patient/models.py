@@ -123,7 +123,7 @@ class PatientHealth(models.Model):
     """
     pid = models.ForeignKey("PatientBase",on_delete=models.CASCADE,verbose_name="病人号")
     pdate = models.DateField(verbose_name="入院时间")
-    pgender = models.BinaryField(verbose_name="性别",blank=True,null=True)
+    pgender = models.IntegerField(verbose_name="性别",blank=True,null=True)
     page = models.IntegerField(verbose_name="就诊年龄",blank=True,null=True)
     low_bp = models.IntegerField(verbose_name="舒张压",blank=True,null=True)
     high_bp = models.IntegerField(verbose_name="收缩压",blank=True,null=True)
@@ -145,12 +145,12 @@ class PatientHealth(models.Model):
     pt = models.FloatField(verbose_name="凝血酶原时间", blank=True, null=True) # Prothrombin time
     ck = models.FloatField(verbose_name="肌酸激酶",blank=True,null=True)  # Creatine kinase
     ckmb = models.FloatField(verbose_name="肌酸激酶同工酶",blank=True,null=True)  # creatine kinase muscle B
-    cTnI = models.BinaryField(verbose_name="肌钙蛋白I",blank=True,null=True)
-    ct = models.BinaryField(verbose_name="胸痛",blank=True,null=True)  # chest pain
-    stt = models.BinaryField(verbose_name="ST-T改变",blank=True,null=True)
-    stup = models.BinaryField(verbose_name="ST-T抬高",blank=True,null=True)
-    std = models.BinaryField(verbose_name="ST-T压低",blank=True,null=True)
-    q = models.BinaryField(verbose_name="病理性Q波",blank=True,null=True)
+    cTnI = models.IntegerField(verbose_name="肌钙蛋白I",blank=True,null=True)
+    ct = models.IntegerField(verbose_name="胸痛",blank=True,null=True)  # chest pain
+    stt = models.IntegerField(verbose_name="ST-T改变",blank=True,null=True)
+    stup = models.IntegerField(verbose_name="ST-T抬高",blank=True,null=True)
+    std = models.IntegerField(verbose_name="ST-T压低",blank=True,null=True)
+    q = models.IntegerField(verbose_name="病理性Q波",blank=True,null=True)
 
     class Meta:
         verbose_name = verbose_name_plural = "患者身体信息"

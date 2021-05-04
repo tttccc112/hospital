@@ -114,10 +114,35 @@ def load9(request):
     # 需要先写D11病人表和D8诊断表
 
 def load12(request):
-    pass
+    CheckDetailList = []
+    data = xlrd.open_workbook("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D12检查详情.xls")
+    table = data.sheets()[0]
+    nrows = table.nrows  # 获取表的行数
+    for i in range(nrows):
+        if i == 0:
+            continue
+        else:
+            temp = table.row_values(i)
+            diagnose_id,detail_id,check_id,result,time = temp[0], temp[1], temp[2], temp[3], temp[4]
+            CheckDetailList.append(models.CheckDetail(diagnose_id_id=diagnose_id,detail_id=detail_id,
+                                            check_id_id=check_id,report_content=result,check_time=time))
+    CheckDetail.objects.bulk_create(CheckDetailList)
+    return HttpResponse("D12完成!")
 
 def load14(request):
-    pass
+    RosterList = []
+    data = xlrd.open_workbook("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D14排版表.xls")
+    table = data.sheets()[0]
+    nrows = table.nrows  # 获取表的行数
+    for i in range(nrows):
+        if i == 0:
+            continue
+        else:
+            temp = table.row_values(i)
+            doc_id,reamin,regis_list = temp[0], temp[1], temp[2]
+            RosterList.append(models.Roster(doc_id_id=doc_id,remain=reamin,reservations=regis_list))
+    Roster.objects.bulk_create(RosterList)
+    return HttpResponse("D14完成!")
 
 
 
