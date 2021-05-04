@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'patient',
+    'doctor',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'hospital.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,4 +125,11 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
     'patient',
+    'doctor',
+)
+
+STATICFILES_DIRS= (
+    os.path.join(BASE_DIR,  'static'),
+    'patient',
+     'doctor',
 )
