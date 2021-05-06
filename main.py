@@ -211,7 +211,12 @@ class ScheduleInfo:
         self._date = date
 
     def add_register(self, register_id, date):
-        # TODO:增加挂号信息（当日排班）
+        """
+        增加挂号信息（为医生新增挂号单）
+        :param register_id: 挂号单id
+        :param date: 挂号日期
+        :return:
+        """
         self.load_register(date=date)
         if len(self._schedule_register) < self._max_schedule_number:
             self._schedule_register.append(register_id)
@@ -220,16 +225,25 @@ class ScheduleInfo:
             raise NoAttrError('医生排班已满', '医生排班不得超过50', '医生排班')
 
     def get_spare_number(self):
+        """
+        获取医生空余号量
+        :return: 空余号量
+        """
         self.load_all_from_database(doctor_id=self._doctor_id, date=self._date)
         return self._max_schedule_number - len(self._schedule_register)
 
     def load_register(self, date):
+        """
+        获取当日排班信息列表
+        :param date:
+        :return:
+        """
         # TODO:提供日期，返回当日排班信息列表
         return self._schedule_register
 
     def load_all_from_database(self, doctor_id, date):
         # TODO: 从数据库加载所有信息
-        # TODO:加载当日最大排班数量！
+        # TODO: 加载当日最大排班数量！
         self._doctor_id = doctor_id
         pass
 
@@ -241,8 +255,44 @@ class ScheduleInfo:
 class DoctorInfo:
     """医生信息类，负责医生信息的处理,如改密码等"""
 
-    def __init__(self):
+    def __init__(self, doctor_id=None, doctor_name=None):
+        self._doctor_id = doctor_id
+        self._doctor_name = doctor_name
+        self._password = None
+
+    def load_all_from_database(self):
+        # TODO:从数据库加载所有信息
         pass
+
+    def _write_info_to_database(self, attr):
+        # TODO:写入信息至数据库
+        pass
+
+    def login(self, password):
+        """
+        医生登录认证
+        TODO: 将密码转化成base64编码，或者其他形式做个简单加密
+        :param password:
+        :return:
+        """
+        if password == self._password:
+            return True
+        else:
+            return False
+
+    def change_password(self, old_password, new_password):
+        """
+        更改密码
+        :param old_password: 旧密码
+        :param new_password: 新密码
+        :return:
+        """
+        if old_password == self._password:
+            self._password = new_password
+            self._write_info_to_database(attr='password')
+            return True
+        else:
+            return False
 
 
 class DepartmentInfo:
@@ -261,13 +311,13 @@ class DepartmentInfo:
         获取部门中出诊的医生id与剩余号
         :return: {医生ID:剩余号}
         """
+        # TODO:之后可能需要转换成tuple list来排序
         return {i: ScheduleInfo(doctor_id=i, date=date).get_spare_number() for i in self._doctor_id_list}
 
 
 class RegisterInfo:
     """挂号信息类，负责挂号信息的后台处理"""
 
-    # TODO:挂号信息未完成
     def __init__(self, patient_id=None, doctor_id=None, register_id=None):
         self._patient_id = patient_id
         self._doctor_id = doctor_id
@@ -275,30 +325,60 @@ class RegisterInfo:
         self._payment_id = None
 
     def create_id(self):
+        """
+        创建挂号单id
+        :return: 新建的挂号单id
+        """
         # TODO:创建ID
         return self._register_id
 
     def get_id(self):
+        """
+        获取挂号单id
+        :return: 挂号单id
+        """
         return self._register_id
 
     def get_patient_id(self):
+        """
+        获取挂号单中的病人id
+        :return: 病人id
+        """
         return self._patient_id
 
     def get_doctor_id(self):
+        """
+        获得挂号单的医生的id
+        :return: 医生id
+        """
         return self._doctor_id
 
-    def make_register(self):
+    def write_all_to_database(self):
+        """
+        将所有信息写入数据库
+        :return:
+        """
         # TODO:将当前信息存入数据库
         pass
 
     def load_all_from_database(self, register_id):
+        """
+        从数据库中加载所有信息
+        :param register_id:挂号单id
+        :return:
+        """
         self._register_id = register_id
         # TODO:加载所有信息
         pass
 
     def add_payment(self, payment_id):
+        """
+        将付款单信息写入
+        :param payment_id:
+        :return:
+        """
         self._payment_id = payment_id
-        pass
+
 
 
 class CheckInfo:
@@ -503,7 +583,7 @@ class DiagnoseInfo:
 class PatientCheckInfo:
     """病人检查单的信息类，每次医生开检查就创建一个"""
 
-    def __init__(self, diagnose_info: DiagnoseInfo, check_id: int = None):
+    def __init__(self, diagnose_info: DiagnoseInfo=None, check_id: int = None):
         """初始化时必须传入诊断单类"""
         self._diagnose_info = diagnose_info  # 诊断类
         self._check_id = check_id  # 检查单ID
@@ -600,7 +680,7 @@ class PatientMedicineInfo:
         self._create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self._medicine_info = medicine_info
         self._diagnose_info.add_medicine(medicine_id=self._patient_medicine_id)
-        self._write_info_to_database()
+        self._write_info_to_database(attr='all')
 
     def get_medicine_info(self):
         """
@@ -609,7 +689,7 @@ class PatientMedicineInfo:
         """
         return self._medicine_info
 
-    def _write_info_to_database(self):
+    def _write_info_to_database(self, attr):
         # TODO: 将当前信息写入数据库
         pass
 
@@ -645,22 +725,23 @@ class CommentInfo:
         self._comment_info = comment_info
         self._create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self._cal_comment_trend()
-        self._write_info_to_database()
+        self._write_info_to_database('all')
 
     def _cal_comment_trend(self):
         # TODO:计算评价倾向评分
         pass
 
-    def _write_info_to_database(self):
+    def _write_info_to_database(self, attr='all'):
         # TODO: 将当前信息写入数据库
         pass
 
 
 class PaymentSystem:
     def __init__(self):
-        self._payment_info = None
+        pass
 
-    def create_payment_info(self, p_id: int, detail_info: dict, diag_id=None, regs_id=None):
+    @staticmethod
+    def create_payment_info(p_id: int, detail_info: dict, diag_id=None, regs_id=None):
         """
         创建支付信息，传入病人id，支付详情与诊断id/挂号id
         :param p_id: 病人id
@@ -676,37 +757,39 @@ class PaymentSystem:
         elif diag_id is not None:
             diag_info = DiagnoseInfo()
             diag_info.load_all_from_database(diagnose_id=diag_id)
-            self._payment_info = PaymentInfo(p_info, detail_info, diag_info=diag_info, regs_info=None)
-            self._payment_info.create_id()
-            diag_info.add_payment(self._payment_info.get_id())
+            payment_info = PaymentInfo(p_info, detail_info, diag_info=diag_info, regs_info=None)
+            payment_info.create_id()
+            diag_info.add_payment(payment_info.get_id())
         elif regs_id is not None:
             regs_info = RegisterInfo()
             regs_info.load_all_from_database(register_id=regs_id)
-            self._payment_info = PaymentInfo(p_info, detail_info, diag_info=None, regs_info=regs_info)
-            self._payment_info.create_id()
-            regs_info.add_payment(self._payment_info.get_id())
-        self._payment_info.cal_money()
-        self._payment_info.create_payment()
-        return self._payment_info.get_id()
+            payment_info = PaymentInfo(p_info, detail_info, diag_info=None, regs_info=regs_info)
+            payment_info.create_id()
+            regs_info.add_payment(payment_info.get_id())
+        payment_info.cal_money()
+        payment_info.create_payment()
+        return payment_info.get_id()
 
-    def load_payment_info(self, payment_id):
+    @staticmethod
+    def load_payment_info(payment_id):
         """
         加载支付信息
         :param payment_id:支付单id
         :return:
         """
-        self._payment_info = PaymentInfo()
-        self._payment_info.load_all_from_database(payment_id)
-        return self._payment_info
+        payment_info = PaymentInfo()
+        payment_info.load_all_from_database(payment_id)
+        return payment_info
 
-    def make_payment(self, payment_id):
+    @staticmethod
+    def make_payment(payment_id):
         """
         付款，提供付款单id
         :param payment_id: 支付单id
         :return:
         """
-        self.load_payment_info(payment_id)
-        self._payment_info.update_status(True)
+        payment_info = PaymentSystem.load_payment_info(payment_id)
+        payment_info.update_status(True)
         return True
 
 
@@ -717,18 +800,18 @@ class PatientSystem:
         """除注册外，其他功能均需初始化时提供病人id"""
         self._patient_id = patient_id
 
-    def load_patient_info(self):
+    @staticmethod
+    def load_patient_info(patient_id):
         """
         加载病人信息，需要提供病人id，返回病人信息类
         :return:
         """
-        if self._patient_id is None:
-            raise NoAttrError('无病人id', '需提供病人id', '加载病人信息')
-        p_info = PatientInfo(p_id=self._patient_id)
-        p_info.load_all_from_database(p_id=self._patient_id)
+        p_info = PatientInfo(p_id=patient_id)
+        p_info.load_all_from_database(p_id=patient_id)
         return p_info
 
-    def registration(self, name, age, gender, password):
+    @staticmethod
+    def registration(name, age, gender, password):
         """
         注册用户，需输入姓名，年龄，性别与密码。返回病人信息类
         :param name: 姓名
@@ -739,20 +822,20 @@ class PatientSystem:
         """
         p_info = PatientInfo(p_name=name, p_gender=gender, p_age=age)
         p_info.create_id(new_password=password)
-        self._patient_id = p_info.get_info('id')
         p_info.write_all_to_database()
         return p_info
 
-    def update_info(self, attr, value):
+    @staticmethod
+    def update_info(patient_id, attr, value):
         """
         更新个人信息
+        :param patient_id: 病人id
         :param attr: 属性
         :param value: 值
         :return:
         """
-        if self._patient_id is None:
-            raise NoAttrError('无病人id', '需提供病人id', '加载病人信息')
-        p_info = PatientInfo(p_id=self._patient_id)
+        p_info = PatientInfo(p_id=patient_id)
+        p_info.load_all_from_database(p_id=patient_id)
         p_info.update_info(attr=attr, new_value=value)
 
     def update_password(self, old_password, new_password):
@@ -771,77 +854,83 @@ class PatientSystem:
 class MedicineSystem:
     """药品系统"""
 
-    def __init__(self, diagnose_id):
-        """初始化时必须提供诊断id"""
-        self._diagnose_id = diagnose_id
+    def __init__(self):
+        pass
 
-    def add_medicine(self, medicine_id, add_num):
+    @staticmethod
+    def add_medicine(medicine_id, add_num):
         # TODO:增加药品库存，可能没用，可删
         pass
 
-    def prescribe_medicine(self, medicine_info_list: List[tuple]):
+    @staticmethod
+    def prescribe_medicine(diagnose_id, medicine_info_list: List[tuple]):
         """
         医生开药，提供药品信息列表，为[(药品名称,数量)]
+        :param diagnose_id: 诊断单id
         :param medicine_info_list: 药品信息列表
         :return:
         """
         diagnose_info = DiagnoseInfo()
-        diagnose_info.load_all_from_database(diagnose_id=self._diagnose_id)
+        diagnose_info.load_all_from_database(diagnose_id=diagnose_id)
         medicine_info = PatientMedicineInfo(diagnose_info=diagnose_info)
         medicine_info.create_id()
         medicine_info.create_prescribe_medicine(medicine_info_list)
         payment_info = PaymentSystem()
         payment_info.create_payment_info(p_id=diagnose_info.get_patient_id(), detail_info=dict(medicine_info_list),
-                                         diag_id=self._diagnose_id)
-        self._consume_medicine(medicine_info_list)
+                                         diag_id=diagnose_id)
 
-    def _consume_medicine(self, medicine_info_list):
-        # TODO:减少数据库中的药品库存
+    @staticmethod
+    def consume_medicine(medicine_info_id):
+        # TODO:减少数据库中的药品库存（在用户点击取药后减少库存）
         pass
 
 
 class CheckSystem:
-    def __init__(self, diagnose_id):
-        self._diagnose_id = diagnose_id
+    def __init__(self):
+        pass
 
-    def prescribe_check(self, check_name_list: list):
+    @staticmethod
+    def prescribe_check(diagnose_id, check_name_list: list):
         """
         医生开检查，提供检查名称列表
-        :param check_name_list:
+        :param diagnose_id: 诊断单id
+        :param check_name_list:检查名称列表
         :return:
         """
         # 医生开检查
         diagnose_info = DiagnoseInfo()
-        diagnose_info.load_all_from_database(diagnose_id=self._diagnose_id)
+        diagnose_info.load_all_from_database(diagnose_id=diagnose_id)
         check_info = PatientCheckInfo(diagnose_info=diagnose_info)
         check_info.create_id()
         check_info.create_prescribe_check(check_name=check_name_list)
         payment_info = PaymentSystem()
         payment_info.create_payment_info(p_id=diagnose_info.get_patient_id(),
                                          detail_info={i: 1 for i in check_name_list},
-                                         diag_id=self._diagnose_id)
+                                         diag_id=diagnose_id)
 
-    def update_check_info(self, attr: str, value: float):
+    @staticmethod
+    def update_check_info(check_id, attr: str, value: float):
         """
         病人做检查
+        :param check_id: 检查单id
         :param attr: 检查项目
         :param value: 检查值
         :return:
         """
-        diagnose_info = DiagnoseInfo()
-        diagnose_info.load_all_from_database(diagnose_id=self._diagnose_id)
-        check_info = PatientCheckInfo(diagnose_info=diagnose_info)
+        check_info = PatientCheckInfo()
+        check_info.load_all_from_database(check_id=check_id)
         check_info.update_check_info(attr=attr, value=value)
 
 
 class CommentSystem:
     """评论系统，用户对医生做出评价"""
 
-    def __init__(self, diagnose_id):
-        self._diagnose_id = diagnose_id
+    def __init__(self):
+        pass
 
-    def make_comment(self, comment_info):
-        comment = CommentInfo(diagnose_id=self._diagnose_id)
+    @staticmethod
+    def make_comment(diagnose_id, comment_info):
+        comment = CommentInfo(diagnose_id=diagnose_id)
         comment.make_comment(comment_info=comment_info)
 
 
