@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="1072884091">
     <data-source source="LOCAL" name="db" uuid="85bdeffd-bb39-41b1-8cb2-e5dcb44168d8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:E:\大三下2021春\01信息系统分析与设计\project\hospital\db.sqlite3</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>

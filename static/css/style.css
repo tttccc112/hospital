@@ -35,6 +35,42 @@ div#wrapper {
 }
 
 
+#doctor_pre>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#doctor_pre>tbody{
+    display: block;
+    height: 271px;
+    overflow-y: scroll;
+}
+#doctor_pre>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+
+#pa_his>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#pa_his>tbody{
+    display: block;
+    height: 300px;
+    overflow-y: scroll;
+}
+#pa_his>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+
 .ori-1{
     -webkit-text-size-adjust: 100%;
                     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -47,6 +83,7 @@ div#wrapper {
                     z-index: 1;
                     position: absolute;
                     width: 250px;
+                    height:100%;
                     background-color: #fff;
                     right:0;
 }
@@ -382,7 +419,7 @@ span.fa.arrow {
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
-    margin: 0 0 0 240px;
+    margin: 0 240px 0 240px;
     min-height: 1000px;
   }
 }
@@ -393,9 +430,14 @@ a.dropdown-toggle.dropdown-at {
     border-bottom: none;
 }
 
+
+
 .content-main {
     background-color: #F3F3F4;
-	    padding-top: 1em;
+    padding-top: 1em;
+    position: inherit;
+    margin: 0 240px 0 0px;
+    min-height: 1000px;
 }
 .navbar-right-left{
 	float: right;
@@ -577,7 +619,7 @@ i.fa.fa-globe {
 .banner { 
     background: #fff;
     display: block;
-    margin: 0em 1em ;
+    margin: 1em 1em ;
 	padding:1em;
 	border: 1px solid #ebeff6;
     border-color: #ebeff6;
@@ -589,25 +631,23 @@ i.fa.fa-globe {
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.banner  h2{
-	font-size:0.9em;
-}
-.banner  h2 a { 
-    color:#D95459;
-	text-decoration:none;
-	font-family: 'Muli-Regular';
-	padding:0.3em ;
-}
-.banner  h2 span{ 
-    color:#000;
-	font-family: 'Muli-Regular';
-	padding:0.3em ;
-}
-.banner  h2 i{ 
-    color:#000;
-	vertical-align:middle;
-	padding:0.3em ;
-}
+
+/*.banner  h2 a { */
+    /*color:#D95459;*/
+	/*text-decoration:none;*/
+	/*font-family: 'Muli-Regular';*/
+
+/*}*/
+/*.banner  h2 span{ */
+    /*color:#000;*/
+	/*font-family: 'Muli-Regular';*/
+
+/*}*/
+/*.banner  h2 i{ */
+    /*color:#000;*/
+	/*vertical-align:middle;*/
+
+/*}*/
 /*--content--*/
 .content-top-1 {
     background-color: #fff;
@@ -1781,12 +1821,12 @@ a#myTabDrop1,a#profile-tab,a#home-tab {
 div#home {
     padding: 1em 0 0;
 }
-.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    padding: 15px !important;
-    font-size: 0.85em;
-    color: #999;
-    border-top: none !important;
-}
+/*.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {*/
+    /*padding: 15px !important;*/
+    /*font-size: 0.85em;*/
+    /*color: #999;*/
+    /*border-top: none !important;*/
+/*}*/
 
 /*--inbox--*/
 .inbox-right {
@@ -2218,11 +2258,11 @@ canvas#polarArea, canvas#radar, canvas#doughnut {
 	font-size:2em;
 }
 /*--table--*/
-.table td, .table>tbody>tr>td, .table>tbody>tr>th, 
-.table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td,
- .table>thead>tr>th {
-    padding: 8px !important;
-}
+/*.table td, .table>tbody>tr>td, .table>tbody>tr>th, */
+/*.table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td,*/
+ /*.table>thead>tr>th {*/
+    /*padding: 8px !important;*/
+/*}*/
 /*--gallery--*/
 .text-gallery h6 {
     font-size: 1em;
@@ -2484,9 +2524,9 @@ canvas#bar1, canvas#line1 {
   height:250px !important;
 }
 /*--typo--*/
-.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    padding: 8px !important;
-}
+/*.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {*/
+    /*padding: 8px !important;*/
+/*}*/
 .btn-group-lg>.btn, .btn-lg {
     padding: 10px 8px;
 }
@@ -2736,10 +2776,10 @@ canvas#polarArea, canvas#radar, canvas#doughnut {
 .table h5 {
     font-size: 1.1em;
 }
-.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    font-size: 0.7em;
-    padding: 4px !important;
-}
+/*.table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {*/
+    /*font-size: 0.7em;*/
+    /*padding: 4px !important;*/
+/*}*/
 .but_list h1 {
     font-size: 1.4em;
 }
