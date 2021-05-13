@@ -1,16 +1,9 @@
 import os
-import pickle
-import string
 import sys
 import time
-import jieba
 import django
-import numpy as np
 from typing import List, Dict, Tuple
-from keras.preprocessing import sequence
-from keras.engine.saving import load_model
-
-# from patient.models import Register, Fee, Diagnose, Prescribe, PatientBase, PatientHealth
+from patient.models import Register, Fee, Diagnose, Prescribe, PatientBase, PatientHealth
 
 BASE_DIR = os.path.dirname('/Users/xie/PycharmProjects/hospital')
 sys.path.append(BASE_DIR)
@@ -387,6 +380,7 @@ class RegisterInfo:
         self._payment_id = payment_id
 
 
+
 class CheckInfo:
     """检查信息类，主要负责加载检查描述与价格，放到类变量check_money_dict中"""
     # TODO:未完成
@@ -567,9 +561,6 @@ class DiagnoseInfo:
         """
         return self._patient_id
 
-    def get_doctor_id(self):
-        return self._doctor_id
-
     def create_id(self):
         """
         创建诊断单ID
@@ -592,7 +583,7 @@ class DiagnoseInfo:
 class PatientCheckInfo:
     """病人检查单的信息类，每次医生开检查就创建一个"""
 
-    def __init__(self, diagnose_info: DiagnoseInfo = None, check_id: int = None):
+    def __init__(self, diagnose_info: DiagnoseInfo=None, check_id: int = None):
         """初始化时必须传入诊断单类"""
         self._diagnose_info = diagnose_info  # 诊断类
         self._check_id = check_id  # 检查单ID
@@ -715,7 +706,6 @@ class CommentInfo:
         self._comment_info = None
         self._create_time = None
         self._comment_trend = None
-        self._doctor_id = None
         self._comment_id = comment_id
 
     def create_id(self):
@@ -735,13 +725,10 @@ class CommentInfo:
         self._comment_info = comment_info
         self._create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self._cal_comment_trend()
-        diagnose_info = DiagnoseInfo()
-        diagnose_info.load_all_from_database(diagnose_id=self._diagnose_id)
-        self._doctor_id = diagnose_info.get_doctor_id()  # 获取医生id，以便后续查找
         self._write_info_to_database('all')
 
     def _cal_comment_trend(self):
-        self._comment_trend = CommentAnalysisSystem.single_predict(self._comment_info)
+        # TODO:计算评价倾向评分
         pass
 
     def _write_info_to_database(self, attr='all'):
@@ -938,15 +925,18 @@ class CheckSystem:
 class CommentSystem:
     """评论系统，用户对医生做出评价"""
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def make_comment(diagnose_id, comment_info):
         comment = CommentInfo(diagnose_id=diagnose_id)
         comment.make_comment(comment_info=comment_info)
 
-    @staticmethod
-    def find_all_comment(doctor_id):
-        # TODO:提供医生id，返回所有评论，以列表形式返回
-        return List
+
+class CommentAnalysisSystem:
+    """情感分析系统，主要分析病人评论"""
+    pass
 
 
 class DiagnoseSystem:
@@ -1036,7 +1026,7 @@ class RegisterSystem:
     def make_register(patient_id, doctor_id, date):
         register_info = RegisterInfo(patient_id=patient_id, doctor_id=doctor_id)
         register_info.create_id()
-        register_info.write_all_to_database()
+        register_info.make_register()
 
         payment_info = PaymentSystem()
         payment_info.create_payment_info(p_id=patient_id, detail_info={'register': 1}, regs_id=register_info.get_id())
@@ -1044,80 +1034,6 @@ class RegisterSystem:
 
         schedule_info = ScheduleInfo(doctor_id=doctor_id, date=date)
         schedule_info.add_register(register_id=register_info.get_id(), date=date)
-
-
-class CommentAnalysisSystem:
-    """情感分析系统，主要分析病人评论，使用前需要初始化"""
-
-    def __init__(self):
-        self.stop_punctuation = string.punctuation + ':#0123456789，。！@#…*（）-+=】【】；：[]丶、~《》～？”' + ' ' + '\xa0' + '\n' + '\ue627' + '\r' + '\u3000'
-        self.stop_list = []
-        with open('LSTM_model/stopwords_list.txt', 'r') as f:
-            while True:
-                line = f.readline()
-                if not line:
-                    break
-                line = line.strip()  # 去除\n
-                self.stop_list.append(line)
-        with open('LSTM_model/dict_酒店.pkl', 'rb') as f:
-            self.w2indx = pickle.load(f)  # 读取储存的数据
-            self.w2vec = pickle.load(f)
-        self.LSTM_model = load_model('LSTM_model/酒店_LSTM.h5')
-
-    def single_predict(self, sentence):
-        """
-        输入一条单句，返回单句评分
-        :param sentence: 单句
-        :return: 评分，float
-        """
-
-        text = str(sentence)
-        for punctuation in self.stop_punctuation:
-            text = text.replace(punctuation, '')
-        word_list = list(jieba.cut(text))
-
-        for word in word_list:
-            if word in self.stop_list:
-                while word in word_list:
-                    word_list.remove(word)
-
-        new_sentences = []
-        for word in sentence:
-            new_sentences.append(np.array(self.w2indx.get(word, 0)))  # 单词转索引数字
-        sentence_array = np.array([new_sentences])
-        pad_sentence_array = sequence.pad_sequences(list(sentence_array), maxlen=150)
-        predict_list = self.LSTM_model.predict(pad_sentence_array)
-        print(sentence, predict_list[0][0])
-        return predict_list[0][0]
-
-    def multiple_predict(self, raw_sentence_list):
-        """提供医生id，返回该医生的所有评价综合评分"""
-        """很奇怪，输入数组的时候与输入单个句子会不一样，每生成一条评论就存一次数据库"""
-        # raw_sentence_list = CommentSystem.find_all_comment(doctor_id)
-        processed_text_list = []
-        for text in raw_sentence_list:
-            text = str(text)
-            for punctuation in self.stop_punctuation:
-                text = text.replace(punctuation, '')
-            word_list = list(jieba.cut(text))
-            for word in word_list:
-                if word in self.stop_list:
-                    while word in word_list:
-                        word_list.remove(word)
-            processed_text_list.append(word_list)
-
-        new_sentences = []
-        for sen in processed_text_list:
-            new_sen = []
-            for word in sen:
-                new_sen.append(self.w2indx.get(word, 0))  # 单词转索引数字
-            new_sentences.append(np.array(new_sen))
-        sentence_array = np.array(new_sentences)  # 转numpy数组
-        pad_sentence_array = sequence.pad_sequences(list(sentence_array), maxlen=150)
-        predict_list = self.LSTM_model.predict(pad_sentence_array)
-        predict_list = list(np.array(predict_list).reshape((len(predict_list),)))
-        print(predict_list)
-        return predict_list
 
 
 class SearchSystem:
@@ -1129,13 +1045,8 @@ class AIDiagnoseSystem:
     """智能诊断系统"""
     pass
 
-
 # TODO:有些类之间传类变量感觉冗余，能传id尽量传id。
 # TODO:所有List[tuple]类型可直接改成dict，但会失去顺序，需讨论
 # TODO:全部数据库连接工作未完成
 # TODO:评论未完成
 # TODO:某些状态检查支付没有做，要保证按顺序调用函数
-
-CommentAnalysisSystem().single_predict('医术高明，妙手回春')
-CommentAnalysisSystem().single_predict('垃圾医生')
-CommentAnalysisSystem().multiple_predict(['医术高明，妙手回春', '垃圾医生'])
