@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patient/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -532,7 +532,8 @@
       <workItem from="1618885214580" duration="7055000" />
       <workItem from="1618908972689" duration="7218000" />
       <workItem from="1618979508697" duration="5364000" />
-      <workItem from="1619333550807" duration="5403000" />
+      <workItem from="1619333550807" duration="6042000" />
+      <workItem from="1619402064287" duration="4690000" />
     </task>
     <servers />
   </component>
