@@ -4,7 +4,52 @@
 {% block css %}
 
 <style type="text/css">
-
+.f{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    font-weight: 500;
+    line-height: 1.1;
+    font-size: 1em;
+    color: #B3AEAE;
+    font-family: 'Muli-Regular';
+    margin-left:0;
+    margin-top:15px;
+    display:inline-block;
+}
+.l{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    line-height: 1.42857143;
+    font-family: 'Montserrat-Regular';
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #000;
+    float: right;
+    margin-top: 10px;
+    margin-right: 5px;
+    display:inline-block;
+}
+.pad{
+    margin: 4px;
+}
+.title{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-weight: 500;
+    line-height: 1.1;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    background-color: transparent;
+    -webkit-transition: 0.5s all;
+    color: #D95459;
+    text-decoration: none;
+    font-family: 'Muli-Regular';
+    padding: 0.3em;
+}
 </style>
 
 {% endblock %}
@@ -20,79 +65,148 @@
 				</h1>
 		    </div>
 		<!--//banner-->
-            <div class="banner" style="maigin-top:30px;">
-                <div class="col-md-12" style="height: 30px;"><h4 style="text-align: center">基本情况</h4></div>
-                <div class="row">
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">性别</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">就诊年龄</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">胸痛症状</div>
+            <div class="banner" style="maigin-top:30px;vertical-align: middle">
+                <div class="col-md-12" style="height: 40px;"><h4 class="title" style="text-align: center">基本情况</h4></div>
+                <div class="pad row">
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">性别</h5>
+                      <label class="l">男</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">就诊年龄</h5>
+                      <label class="l">11</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">胸痛症状</h5>
+                      <label class="l">11</label>
+                  </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">舒张压</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">收缩压</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd"></div>
-                </div>
-
-                <div class="col-md-12" style="height: 30px;margin-top: 10px;"><h4 style="text-align: center">肝肾功能</h4></div>
-                <div class="row">
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">天门冬氨酸氨基转移酶</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">丙氨酸氨基转移酶</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">总蛋白</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">白蛋白</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">球蛋白</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">白球蛋白比值</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3" style="height: 50px;border:1px solid #ddd">甘油三酯</div>
-                  <div class="col-md-3" style="height: 50px;border:1px solid #ddd">总胆固醇</div>
-                  <div class="col-md-3" style="height: 50px;border:1px solid #ddd">葡萄糖测定</div>
-                  <div class="col-md-3" style="height: 50px;border:1px solid #ddd">肌酐</div>
-
+                <div class="pad row">
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">舒张压</h5>
+                      <label class="l">11</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">收缩压</h5><label class="l">11</label></div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                  </div>
                 </div>
 
-                <div class="col-md-12" style="height: 30px;margin-top: 10px;"><h4 style="text-align: center">血脂</h4></div>
-                <div class="row">
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">低密度脂蛋白胆固醇</div>
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">高密度脂蛋白胆固醇</div>
+                <div class="col-md-12" style="height: 40px;margin-top: 5px;">
+                    <h4 class="title" style="text-align: center">肝肾功能</h4></div>
+                <div class="pad row">
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">天门冬氨酸氨基转移酶</h5><label class="l">11</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">丙氨酸氨基转移酶</h5><label class="l">11</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">总蛋白</h5><label class="l">11</label>
+                  </div>
+                </div>
+                <div class="pad row">
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">白蛋白</h5><label class="l">11</label>
+                  </div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">球蛋白</h5><label class="l">11</label></div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">白球蛋白比值</h5><label class="l">11</label></div>
+                </div>
+                <div class="pad row">
+                  <div class="col-md-3" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">甘油三酯</h5><label class="l">11</label></div>
+                  <div class="col-md-3" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">总胆固醇</h5><label class="l">11</label></div>
+                  <div class="col-md-3" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">葡萄糖测定</h5><label class="l">11</label></div>
+                  <div class="col-md-3" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">肌酐</h5><label class="l">11</label></div>
+
                 </div>
 
-                <div class="col-md-12" style="height: 30px;margin-top: 10px;"><h4 style="text-align: center">凝血常规</h4></div>
-                <div class="row">
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">凝血酶时间</div>
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">纤维蛋白原浓度</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">活化部分凝血活酶时间</div>
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">凝血酶原时间</div>
+                <div class="col-md-12" style="height: 40px;margin-top: 5px;"><h4 class="title" style="text-align: center">血脂</h4></div>
+                <div class="pad row">
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">低密度脂蛋白胆固醇</h5><label class="l">11</label></div>
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">高密度脂蛋白胆固醇</h5><label class="l">11</label></div>
                 </div>
 
-                <div class="col-md-12" style="height: 30px;margin-top: 10px;"><h4 style="text-align: center">心肌酶</h4></div>
-                <div class="row">
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">肌酸激酶</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">肌酸激酶同工酶</div>
-                  <div class="col-md-4" style="height: 50px;border:1px solid #ddd">肌钙蛋白I</div>
+                <div class="col-md-12" style="height: 40px;margin-top: 5px;"><h4 class="title" style="text-align: center">凝血常规</h4></div>
+                <div class="pad row">
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">凝血酶时间</h5><label class="l">11</label></div>
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">纤维蛋白原浓度</h5><label class="l">11</label></div>
+                </div>
+                <div class="pad row">
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">活化部分凝血活酶时间</h5><label class="l">11</label></div>
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">凝血酶原时间</h5><label class="l">11</label></div>
                 </div>
 
-                <div class="col-md-12" style="height: 30px;margin-top: 10px;"><h4 style="text-align: center">心电图</h4></div>
-                <div class="row">
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">ST-T段改变</div>
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">ST段抬高</div>
+                <div class="col-md-12" style="height: 40px;margin-top: 5px;"><h4 class="title" style="text-align: center">心肌酶</h4></div>
+                <div class="pad row">
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">肌酸激酶</h5><label class="l">11</label></div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">肌酸激酶同工酶</h5><label class="l">11</label></div>
+                  <div class="col-md-4" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">肌钙蛋白I</h5><label class="l">11</label></div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">ST段压低</div>
-                  <div class="col-md-6" style="height: 50px;border:1px solid #ddd">病理性Q波</div>
+
+                <div class="col-md-12" style="height: 40px;margin-top: 5px;"><h4 class="title" style="text-align: center">心电图</h4></div>
+                <div class="pad row">
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">ST-T段改变</h5><label class="l">11</label></div>
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">ST段抬高</h5><label class="l">11</label></div>
+                </div>
+                <div class="pad row">
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">ST段压低</h5><label class="l">11</label></div>
+                  <div class="col-md-6" style="height: 50px;border:1px solid  #ddd">
+                      <h5 class="f">病理性Q波</h5><label class="l">11</label></div>
+                </div>
+
+                <div class="pad row" style="margin-top:25px;">
+                  <div class="col-md-6" style="height: 50px;text-align: center">
+                        <button class="btn btn-default" onclick="get_result()">判别</button>
+                      </div>
+                  <div class="col-md-6" style="height: 50px;text-align: center">
+                      <input type="text" style="border:2px solid #D95459" class="form-control1" id="exhibit" value="结果展示区" >
+                      </div>
                 </div>
 
 
 		    </div>
 
-             <div style="margin-top: 100px;text-align:center; width:100%">
+             <div style="margin-top: 50px;text-align:center; width:100%">
                  <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
              </div>
 
 
+        <script>
+        function get_result() {
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'result',csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                console.log('success');
+                              document.getElementById("exhibit").value=arg.message
+
+                            }
+                        }}
+                    )
+        }
+        </script>
 
         {% endblock %}
 

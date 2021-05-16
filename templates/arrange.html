@@ -19,6 +19,13 @@
     width: 100%;
     table-layout: fixed;
 }
+.qqq,#pa_his>tbody>tr>td{
+    text-align: center;
+}
+.qqq,#pa_his>thead>tr>th{
+    text-align: center;
+}
+
 </style>
 
 {% endblock %}
@@ -52,7 +59,7 @@
                                     <td>1</td>
                                     <td>张三</td>
                                     <td>45</td>
-                                    <td> <button type="button" class="btn btn-default btn-sm">Small button</button></td>
+                                    <td> <button onclick="revert('123')" type="button" class="btn btn-default btn-sm">Small button</button></td>
                                 </tr>
                                 </tbody>
 
@@ -63,7 +70,7 @@
                 <div style="height: 30px;line-height:30px;">
                     <h3 align="center" >本周工作安排看诊数</h3>
                 </div>
-                <table class="table table-striped" >
+                <table class="qqq table table-striped" >
                     <thead>
                         <tr>
                           <th>一</th>
@@ -75,14 +82,14 @@
                           <th>日</th>
                         </tr>
                       </thead>
-                    <tbody >
+                    <tbody>
                         <tr>
                             <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
                             <td>0</td>
                         </tr>
                         </tbody>
@@ -94,6 +101,12 @@
                  <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
              </div>
 
+        <script>
+        function revert(id){
+            var doctor=window.location.href.split('/')[5]
+            location.href='http://127.0.0.1:8000/doctor/index/'+doctor+'/'+id+'/'
+        }
+        </script>
 
 
         {% endblock %}

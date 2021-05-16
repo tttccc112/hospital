@@ -19,6 +19,75 @@
     width: 100%;
     table-layout: fixed;
 }
+#pa_his>tbody>tr>td,th{
+    text-align: center;
+}
+#checked>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody{
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
+}
+#checked>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody>tr>td,th{
+    text-align: center;
+}
+#cr>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody{
+    display: block;
+    height: 200px;
+    overflow-x: scroll;
+}
+#cr>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody>tr>td,th{
+    text-align: center;
+}
+
+
+
+.wrap {
+                display: none;
+				background-color: #9D9D9D;
+                width: 100%;
+                height: 1100px;
+                left: 0;
+                top: 0;
+                filter: alpha(opacity=50);
+                opacity: 0.5;
+                z-index: 1;
+                position: absolute;
+			}
+
+.box2 {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 600px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top:200px;
+    z-index: 2;
+    top:0;
+    left:0;
+    text-align: center;
+
+}
 </style>
 
 {% endblock %}
@@ -52,7 +121,7 @@
                                     <td>1</td>
                                     <td>张三</td>
                                     <td>45</td>
-                                    <td> <button type="button" class="btn btn-default btn-sm">Small button</button></td>
+                                    <td> <button type="button" onclick="open_check(11)" class="btn btn-default btn-sm">Small button</button></td>
                                 </tr>
                                 </tbody>
 
@@ -60,9 +129,88 @@
 		    </div>
 
              <div style="margin-top: 100px;text-align:center; width:100%">
-                 <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
+                 <button style="display: inline-block; "  class="btn btn-default btn-lg" type="submit">回首页</button>
              </div>
 
+            <div class="wrap" id="cover">
+            </div>
+
+            <div class="box2" id="check_result">
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title" id="cn"></h4>
+                        <div class="row">
+                            <div class="col-md-6"><small id="cd"></small></div>
+                            <div class="col-md-6"><small id="ci"></small></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+
+                        <table id="cr" class="table table-striped"  >
+                            <thead>
+                                <tr id="checknames">
+                                  <th>属性</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr id="checkvalues">
+                                    <td>结果</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;">关闭</button>
+            </div>
+
+            <script>
+            function open_check(id) {
+            document.getElementById("cover").style.display = "block";
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'search_check','id':id,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                console.log('success');
+                                result=arg.message
+                                document.getElementById("cn").innerHTML=result[0]
+                                document.getElementById("cd").innerHTML='时间：'+result[1]
+                                document.getElementById("ci").innerHTML='检查ID：'+id
+                                var t=document.getElementById("checknames");
+                                t.innerHTML='<th>属性</th>'
+                                var attributes=result[2];
+                                for (var i = 0, len = attributes.length; i < len; i++) {
+                                    hang = document.createElement("th");
+                                    hang.innerHTML=attributes[i]
+                                    t.appendChild(hang)
+                                }
+                                var t=document.getElementById("checkvalues");
+                                t.innerHTML='<td>结果</td>'
+                                var values=result[3];
+                                for (var i = 0, len = values.length; i < len; i++) {
+                                    hang = document.createElement("td");
+                                    hang.innerHTML=values[i]
+                                    t.appendChild(hang)
+                                }
+
+                            }
+                        }}
+                    )
+            document.getElementById("check_result").style.display = "block";
+
+            }
+            function close_check() {
+                document.getElementById("cover").style.display = "none";
+                document.getElementById("check_result").style.display = "none";
+            }
+            </script>
 
 
         {% endblock %}

@@ -176,12 +176,12 @@ touch-action: none;
                             </tr>
 
                             <tr>
-                                <td>尿检</td>
+                                <td>血压</td>
                                 <td>  <input style="display: inline-block;" type="checkbox" name="select" value='2'></td>
                             </tr>
 
                             <tr>
-                                <td>尿检</td>
+                                <td>血脂</td>
                                 <td>  <input style="display: inline-block;" type="checkbox" name="select"  value='3'></td>
                             </tr>
 
@@ -207,7 +207,7 @@ touch-action: none;
                       </div>
                       <div class="panel-body">
                         <form class="form-inline">
-                            <textarea id="discription" class="form-control" rows="5" style="width:100%;height: 200px;"></textarea>
+                            <textarea id="discription" class="form-control" rows="5" style="width:100%;height: 200px;">身体很健康</textarea>
 
                         <div style="text-align:center;vertical-align:middle;margin-top: 5px;">
                             <input type="button" value="保存" onclick="save_discription()" class="btn btn-default" >
@@ -232,11 +232,17 @@ touch-action: none;
                                 </tr>
                               </thead>
 
-                                <tbody>
+                                <tbody id="c2">
                                 <tr>
                                     <td>健胃消食片</td>
                                     <td>
                                        <input class="form-control" type="text" placeholder="0"  id="" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>头孢</td>
+                                    <td>
+                                       <input class="form-control" type="text" placeholder="3"  id="" value="">
                                     </td>
                                 </tr>
                                 </tbody>
@@ -437,26 +443,17 @@ touch-action: none;
             var checkValues = []
             var checkDomArr = document.querySelectorAll('.add-table tbody input[type=checkbox]:checked')
             for (var i = 0, len = checkDomArr.length; i < len; i++) {
-                checkValues.push(checkDomArr[i].value)
+                checkValues.push(new Array(checkDomArr[i].value,checkDomArr[i].parentNode.parentNode.firstChild.innerText))
             }
-            console.log(checkValues)
-            if(checkValues.length==0){return false;}
-            else{
-                  $.ajax({url:window.location.href,
-                          type:'POST',
-                          data:{'entrance':'add_medi','add_medicines':checkValues,csrfmiddlewaretoken: '{{ csrf_token }}'},
-                          dataType:'JSON',
-                          traditional:true,
-                          success:function(arg){
-                                console.log(arg);
-                                if(arg.status){
-                                    console.log('success');
-{#                                    location.href=window.location.href;#}
 
-                                }
-                            }}
-                    )
-        }}
+            var medi_tbody = document.getElementById("c2")
+            for (var i = 0, len = checkDomArr.length; i < len; i++) {
+                hang = document.createElement("tr");
+                hang.innerHTML='<td>'+checkValues[i][1]+'</td> <td> <input class="form-control" type="text" placeholder="0"  id="'+checkValues[i][0]+'" value=""> </td>'
+                medi_tbody.appendChild(hang)
+            }
+            close_medicine()
+        }
 
 
 {#        检查返回#}

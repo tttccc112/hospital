@@ -19,6 +19,87 @@
     width: 100%;
     table-layout: fixed;
 }
+#pa_his>tbody>tr>td,th{
+    text-align: center;
+}
+#checked>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody{
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
+}
+#checked>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody>tr>td,th{
+    text-align: center;
+}
+#cr>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody{
+    display: block;
+    height: 200px;
+    overflow-x: scroll;
+}
+#cr>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody>tr>td,th{
+    text-align: center;
+}
+
+.wrap {
+                display: none;
+				background-color: #9D9D9D;
+                width: 100%;
+                height: 1100px;
+                left: 0;
+                top: 0;
+                filter: alpha(opacity=50);
+                opacity: 0.5;
+                z-index: 1;
+                position: absolute;
+			}
+
+.box {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 800px;
+    height: 1000px;
+    margin-left: 300px;
+    margin-top:50px;
+    z-index: 2;
+    top:0;
+    left:0;
+    text-align: center;
+
+}
+.box2 {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 600px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top:200px;
+    z-index: 4;
+    top:0;
+    left:0;
+    text-align: center;
+
+}
 </style>
 
 {% endblock %}
@@ -52,7 +133,7 @@
                                     <td>1</td>
                                     <td>张三</td>
                                     <td>45</td>
-                                    <td> <button type="button" class="btn btn-default btn-sm">Small button</button></td>
+                                    <td> <button type="button" onclick="check_detail(11)" class="btn btn-default btn-sm">Small button</button></td>
                                 </tr>
                                 </tbody>
 
@@ -63,6 +144,210 @@
                  <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
              </div>
 
+            <div class="wrap" id="cover">
+            </div>
+
+            <div class="box" id="detail">
+                <div class="banner">
+
+				<h3 style="text-align: center;margin-bottom: 10px;">
+                    当前患者
+				</h3>
+
+            <div class="row">
+              <div class="col-md-12" style="height: 150px;border:1px solid #ddd">
+                  <div class="row">
+                      <div class="col-md-2" style="height: 150px;text-align: center">
+                          <h4 style="margin-top:50px;display: inline-block">患者</h4>
+                          <h4 style="margin-top:10px;display: inline-block">信息</h4>
+                      </div>
+                      <div class="col-md-5" style="height: 150px;">
+                          <ul class="list-group" style="margin-top:30px;">
+                              <li class="list-group-item">姓名</li>
+                              <li class="list-group-item">性别</li>
+                          </ul>
+                      </div>
+                      <div class="col-md-5" style="height: 150px;">
+                          <ul class="list-group" style="margin-top:30px;">
+                              <li class="list-group-item">生日</li>
+                              <li class="list-group-item">挂号ID</li>
+                          </ul>
+                      </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12" style="height: 300px;border:1px solid #ddd">
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">已开检查</h4>
+                      </div>
+                      <div class="panel-body">
+                        <table id="checked" class="table table-striped"  >
+                            <thead>
+                                <tr>
+                                  <th>检查</th>
+                                  <th>时间</th>
+                                  <th>状态</th>
+                                  <th>结果</th>
+                                </tr>
+                              </thead>
+
+                                <tbody >
+                                <tr>
+                                    <td>尿检</td>
+                                    <td>2000-1-12</td>
+                                    <td>已结束</td>
+                                    <td> <button type="button" onclick="open_check('id')" class="btn btn-default btn-sm">看结果</button></td>
+                                </tr>
+                                </tbody>
+
+                        </table>
+                      </div>
+                  </div>
+              </div>
+
+
+
+              </div>
+
+            <div class="row">
+              <div class="col-md-6" style="height: 350px;border:1px solid #ddd">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">诊断</h4>
+                      </div>
+                      <div class="panel-body">
+                        <form class="form-inline">
+                            <textarea id="discription" class="form-control" rows="5" style="width:100%;height: 200px;" readonly>
+                                sdgagSRGRdjkgfjasdg</textarea>
+
+                        </form>
+
+                      </div>
+                    </div>
+              </div>
+              <div class="col-md-6" style="height: 350px;border:1px solid #ddd">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">药品信息</h4>
+                      </div>
+                      <div class="panel-body">
+                          <table id="checked" class="save-table table table-striped"   >
+
+                            <thead>
+                                <tr>
+                                  <th>药品名</th>
+                                  <th>个数</th>
+                                </tr>
+                              </thead>
+
+                                <tbody id="c2">
+                                <tr>
+                                    <td>健胃消食片</td>
+                                    <td>
+                                       <input class="form-control" type="text" placeholder="0"  id="" value="" readonly>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                        </table>
+
+
+
+                      </div>
+                    </div>
+              </div>
+            </div>
+		    </div>
+                <button class="btn btn-default" type="submit" onclick="close_detail()" style="display:inline-block;">关闭</button>
+            </div>
+
+            <div class="box2" id="check_result">
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title" id="cn"></h4>
+                        <div class="row">
+                            <div class="col-md-6"><small id="cd"></small></div>
+                            <div class="col-md-6"><small id="ci"></small></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+
+                        <table id="cr" class="table table-striped"  >
+                            <thead>
+                                <tr id="checknames">
+                                  <th>属性</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr id="checkvalues">
+                                    <td>结果</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;">关闭</button>
+            </div>
+
+            <script>
+            function check_detail(id) {
+                document.getElementById("cover").style.display = "block";
+                document.getElementById("detail").style.display = "block";
+                }
+            function close_detail() {
+                document.getElementById("cover").style.display = "none";
+                document.getElementById("detail").style.display = "none";
+                }
+            function open_check(id) {
+            document.getElementById("cover").style.zIndex = 3;
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'search_check','id':id,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                console.log('success');
+                                result=arg.message
+                                document.getElementById("cn").innerHTML=result[0]
+                                document.getElementById("cd").innerHTML='时间：'+result[1]
+                                document.getElementById("ci").innerHTML='检查ID：'+id
+                                var t=document.getElementById("checknames");
+                                t.innerHTML='<th>属性</th>'
+                                var attributes=result[2];
+                                for (var i = 0, len = attributes.length; i < len; i++) {
+                                    hang = document.createElement("th");
+                                    hang.innerHTML=attributes[i]
+                                    t.appendChild(hang)
+                                }
+                                var t=document.getElementById("checkvalues");
+                                t.innerHTML='<td>结果</td>'
+                                var values=result[3];
+                                for (var i = 0, len = values.length; i < len; i++) {
+                                    hang = document.createElement("td");
+                                    hang.innerHTML=values[i]
+                                    t.appendChild(hang)
+                                }
+
+                            }
+                        }}
+                    )
+            document.getElementById("check_result").style.display = "block";
+            }
+            function close_check() {
+            document.getElementById("cover").style.zIndex = 1;
+            document.getElementById("check_result").style.display = "none";
+        }
+            </script>
 
 
         {% endblock %}
