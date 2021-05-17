@@ -5,8 +5,12 @@ from django.shortcuts import render
 def test():
     print("hello world")
 
-def test2():
-    print("hello world!")
+def home(request):
+    return render(request,'home/homepage.html')
     
-def test5():
-    print('?')
+class Login():
+    def __init__(self):
+        pass
+    
+    def login(self,request):
+        return render(request,'patient/login.html')

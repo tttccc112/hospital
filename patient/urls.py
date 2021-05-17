@@ -8,5 +8,7 @@ from django.urls import path
 from patient import views
 
 urlpatterns = [
-    path("test",views.test)
+    path("test",views.test),
+    path('home/',views.home),
+    path('login/',views.Login.login)
 ]
