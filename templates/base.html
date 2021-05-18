@@ -120,12 +120,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Rackham<i class="caret"></i></span><img src="/static/images/wo.jpg"></a>
+		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">张国刚<i class="caret"></i></span><img src="/static/images/2.jpg"></a>
 		              <ul class="dropdown-menu " role="menu">
-		                <li><a href="profile.html"><i class="fa fa-user"></i>Edit Profile</a></li>
-		                <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>
-		                <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calender</a></li>
-		                <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tasks</a></li>
+		                <li><a onclick="profile()"><i class="fa fa-user"></i>信息</a></li>
+{#		                <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>#}
+{#		                <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calender</a></li>#}
+{#		                <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tasks</a></li>#}
 		              </ul>
 		            </li>
 		           
@@ -208,8 +208,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div style="height: 30px;line-height:30px;">
                                 <h4 align="center" >我的评价</h4>
                             </div>
-                            <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 我的星级： <span class="glyphicon glyphicon-star" style="right:0;" aria-hidden="true"></span></a>
-                            <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 满意度： </a>
+                            <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 我的星级： 4.6<span class="glyphicon glyphicon-star" style="right:0;margin-left:10px;" aria-hidden="true"></span></a>
+                            <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 满意度：96% </a>
                             </div>
 
             </div>
@@ -232,6 +232,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var doctor=window.location.href.split('/')[5]
             var patient=window.location.href.split('/')[6]
             location.href='http://127.0.0.1:8000/doctor/index/'+doctor+'/'+patient+'/'
+        }
+        function profile(){
+            var doctor=window.location.href.split('/')[5]
+            var patient=window.location.href.split('/')[6]
+            location.href='http://127.0.0.1:8000/doctor/profile/'+doctor+'/'+patient+'/'
         }
         function jump(id){
             var doctor=window.location.href.split('/')[5]

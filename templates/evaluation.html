@@ -76,11 +76,11 @@
                                             show: false
                                         },
                                         data: [
-                                            {value: 1048, name: '搜索引擎'},
-                                            {value: 735, name: '直接访问'},
-                                            {value: 580, name: '邮件营销'},
-                                            {value: 484, name: '联盟广告'},
-                                            {value: 300, name: '视频广告'}
+                                            {value: 1048, name: '一星'},
+                                            {value: 735, name: '两星'},
+                                            {value: 580, name: '三星'},
+                                            {value: 484, name: '四星'},
+                                            {value: 300, name: '五星'}
                                         ]
                                     }
                                 ]
@@ -112,15 +112,12 @@
                             },
                             series: [
                                 {
-                                    name: '访问来源',
+                                    name: '评价分级',
                                     type: 'pie',
                                     radius: '50%',
                                     data: [
-                                        {value: 1048, name: '搜索引擎'},
-                                        {value: 735, name: '直接访问'},
-                                        {value: 580, name: '邮件营销'},
-                                        {value: 484, name: '联盟广告'},
-                                        {value: 300, name: '视频广告'}
+                                        {value: 78, name: '好评'},
+                                        {value: 22, name: '差评'}
                                     ],
                                     emphasis: {
                                         itemStyle: {
@@ -138,7 +135,7 @@
 
                 </script>
                 </div>
-                      <h3 style="margin-top: 20px;" class="text-center">我的好评：96%</h3>
+                      <h3 style="margin-top: 20px;" class="text-center">我的好评：78%</h3>
                   </div>
                 </div>
 
@@ -154,14 +151,16 @@
                           <th>ID</th>
                           <th>日期</th>
                           <th>评价内容</th>
+                          <th>打分</th>
 
                         </tr>
                       </thead>
                     <tbody >
                         <tr>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
+                            <td>1</td>
+                            <td>2000-1-12</td>
+                            <td>妙手回春！</td>
+                            <td>4 <span class="glyphicon glyphicon-star" style="float:right" aria-hidden="true"></span></td>
                         </tr>
                         </tbody>
                     </tbody>
