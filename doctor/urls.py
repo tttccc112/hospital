@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^load9/',views.load9),
     url(r'^load12/',views.load12),
     url(r'^load14/',views.load14),
+
+
     ]
 
