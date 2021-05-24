@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Register,Fee,Diagnose,Prescribe,PatientBase,PatientHealth
+from import_export.admin import ImportExportModelAdmin
+
 
 # Register your models here.
 @admin.register(Register)
@@ -16,7 +18,7 @@ class RegisterAdmin(admin.ModelAdmin):
         return super(RegisterAdmin, self).save_model(request,obj,form,change)
 
 @admin.register(Fee)
-class FeeAdmin(admin.ModelAdmin):
+class FeeAdmin(ImportExportModelAdmin):
     """
     D7 收费流水
     """

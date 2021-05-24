@@ -9,7 +9,6 @@ from django.urls import path
 from patient import views
 
 urlpatterns = [
-    path("test",views.test),
 
     url(r'^load1/', views.load1),
     url(r'^load7/', views.load7),

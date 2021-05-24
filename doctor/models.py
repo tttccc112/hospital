@@ -7,12 +7,13 @@ class Remark(models.Model):
     """
     remark_id = models.CharField(max_length=50,primary_key=True,verbose_name="评价id")
     diagnose_id = models.ForeignKey("patient.Diagnose",on_delete=models.CASCADE,verbose_name="诊断id")
+    doctor_id = models.ForeignKey("DoctorBase",on_delete=models.CASCADE,verbose_name="医生id",default="10001") # default must?
     remark_date = models.DateField(verbose_name="评价时间")
     remark = models.TextField(verbose_name="评价内容")
     score = models.FloatField(verbose_name="评价得分")
 
     class Meta:
-        verbose_name = verbose_name_plural = "药品价格信息"
+        verbose_name = verbose_name_plural = "医生评价信息"
 
     @classmethod
     def get_all(cls):

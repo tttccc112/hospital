@@ -13,15 +13,6 @@ import pandas as pd
 import datetime
 # Create your views here.
 
-def test():
-    print("hello world")
-
-def test2():
-    print("hello world!")
-    
-def test5():
-    print('?')
-
 def load1_(request):
     """
     D3 挂号表
@@ -78,7 +69,7 @@ def load8(request):
 
 def load7(request):
     """
-    D10 开药记录表
+    D7 费用表
     """
     FeeList = []
     data = pd.read_excel("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D7流水单.xls")
@@ -86,7 +77,11 @@ def load7(request):
     for ind,row in data.iterrows():
         fee_id,register_id_id,diagnose_id_id,fee_content,fee_total,fee_date \
                 = row[0],row[1],row[2],row[3],row[4],row[5]
-        #print(fee_id,register_id_id,diagnose_id_id,fee_content,fee_total,fee_date)
+        print(fee_id,register_id_id,diagnose_id_id,fee_content,fee_total,fee_date)
+
+        if register_id_id != register_id_id: register_id_id = None
+        if diagnose_id_id != diagnose_id_id: diagnose_id_id = None
+
         FeeList.append(models.Fee(fee_id=fee_id,register_id_id=register_id_id,
                                   diagnose_id_id=diagnose_id_id,fee_content=fee_content,
                                   fee_total=fee_total,fee_date=fee_date))
