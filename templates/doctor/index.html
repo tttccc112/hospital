@@ -1,0 +1,504 @@
+{% extends  'base.html' %}
+{% block css %}
+
+<style type="text/css">
+html{
+touch-action: none;
+}
+#checked>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody{
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
+}
+#checked>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody>tr>td,th{
+    text-align: center;
+}
+#cr>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#cr>tbody{
+    display: block;
+    height: 200px;
+    overflow-x: scroll;
+}
+#cr>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#checked>tbody>tr>td,th{
+    text-align: center;
+}
+
+
+.wrap {
+                display: none;
+				background-color: #9D9D9D;
+                width: 100%;
+                height: 1100px;
+                left: 0;
+                top: 0;
+                filter: alpha(opacity=50);
+                opacity: 0.5;
+                z-index: 1;
+                position: absolute;
+			}
+
+.box {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 500px;
+    height: 500px;
+    margin-left: 500px;
+    margin-top:200px;
+    z-index: 2;
+    top:0;
+    left:0;
+    text-align: center;
+
+}
+.box2 {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 600px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top:200px;
+    z-index: 2;
+    top:0;
+    left:0;
+    text-align: center;
+
+}
+
+
+
+</style>
+{% endblock %}
+{% block content%}
+
+
+      		<!--banner-->
+		    <div class="banner">
+
+				<h3 style="text-align: center;margin-bottom: 10px;">
+                    当前患者
+				</h3>
+
+            <div class="row">
+              <div class="col-md-12" style="height: 150px;border:1px solid #ddd">
+                  <div class="row">
+                      <div class="col-md-2" style="height: 150px;text-align: center">
+                          <h4 style="margin-top:50px;display: inline-block">患者</h4>
+                          <h4 style="margin-top:10px;display: inline-block">信息</h4>
+                      </div>
+                      <div class="col-md-5" style="height: 150px;">
+                          <ul class="list-group" style="margin-top:30px;">
+                              <li class="list-group-item">姓名</li>
+                              <li class="list-group-item">性别</li>
+                          </ul>
+                      </div>
+                      <div class="col-md-5" style="height: 150px;">
+                          <ul class="list-group" style="margin-top:30px;">
+                              <li class="list-group-item">生日</li>
+                              <li class="list-group-item">挂号ID</li>
+                          </ul>
+                      </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6" style="height: 350px;border:1px solid #ddd">
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">已开检查</h4>
+                      </div>
+                      <div class="panel-body">
+                        <table id="checked" class="table table-striped"  >
+                            <thead>
+                                <tr>
+                                  <th>检查</th>
+                                  <th>时间</th>
+                                  <th>状态</th>
+                                  <th>结果</th>
+                                </tr>
+                              </thead>
+
+                                <tbody >
+                                <tr>
+                                    <td>尿检</td>
+                                    <td>2000-1-12</td>
+                                    <td>已结束</td>
+                                    <td> <button type="button" onclick="open_check('id')" class="btn btn-default btn-sm">看结果</button></td>
+                                </tr>
+                                </tbody>
+
+                        </table>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6" style="height: 350px;border:1px solid #ddd">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">开检查</h4>
+                      </div>
+                      <div class="panel-body">
+
+                        <table id="checked" class="multi-table table table-striped"  >
+                            <thead>
+                                <tr>
+                                  <th>检查</th>
+                                  <th>选择</th>
+                                </tr>
+                            </thead>
+
+                            <tbody >
+                            <tr>
+                                <td>尿检</td>
+                                <td>  <input style="display: inline-block;" type="checkbox" name="select" value='1'></td>
+                            </tr>
+
+                            <tr>
+                                <td>血压</td>
+                                <td>  <input style="display: inline-block;" type="checkbox" name="select" value='2'></td>
+                            </tr>
+
+                            <tr>
+                                <td>血脂</td>
+                                <td>  <input style="display: inline-block;" type="checkbox" name="select"  value='3'></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div style="text-align:center;vertical-align:middle;">
+                            <input type="button" value="提交" onclick="clickup()" class="btn btn-default" >
+                            <span id="errormsg" style="color:red;"></span>
+                        </div>
+
+                      </div>
+                    </div>
+              </div>
+
+              </div>
+
+            <div class="row">
+              <div class="col-md-6" style="height: 400px;border:1px solid #ddd">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">诊断</h4>
+                      </div>
+                      <div class="panel-body">
+                        <form class="form-inline">
+                            <textarea id="discription" class="form-control" rows="5" style="width:100%;height: 200px;">身体很健康</textarea>
+
+                        <div style="text-align:center;vertical-align:middle;margin-top: 5px;">
+                            <input type="button" value="保存" onclick="save_discription()" class="btn btn-default" >
+                        </div>
+                        </form>
+
+                      </div>
+                    </div>
+              </div>
+              <div class="col-md-6" style="height: 400px;border:1px solid #ddd">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">药品信息</h4>
+                      </div>
+                      <div class="panel-body">
+                          <table id="checked" class="save-table table table-striped"   >
+
+                            <thead>
+                                <tr>
+                                  <th>药品名</th>
+                                  <th>个数</th>
+                                </tr>
+                              </thead>
+
+                                <tbody id="c2">
+                                <tr>
+                                    <td>健胃消食片</td>
+                                    <td>
+                                       <input class="form-control" type="text" placeholder="0"  id="" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>头孢</td>
+                                    <td>
+                                       <input class="form-control" type="text" placeholder="3"  id="" value="">
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                        </table>
+
+                          <div class="row" style="margin-top: 20px">
+                              <div class="col-md-6" style="text-align: center"><input type="button" value="保存" onclick="save_medicine()" class="btn btn-default" ></div>
+                              <div class="col-md-6" style="text-align: center" ><button class="btn btn-default" type="submit"  onclick="open_medicine()" style="display:inline-block;">新增</button></div>
+                          </div>
+
+
+                      </div>
+                    </div>
+              </div>
+            </div>
+		    </div>
+
+            <div class="row" style="margin-top: 20px">
+              <div class="col-md-6" style="text-align: center"><button class="btn btn-default btn-lg" type="submit" style="display:inline-block;">上一位</button></div>
+              <div class="col-md-6" style="text-align: center" ><button class="btn btn-default btn-lg" type="submit" style="display:inline-block;">下一位</button></div>
+            </div>
+		<!--//banner-->
+
+            <div class="wrap" id="cover">
+            </div>
+
+            <div class="box" id="medicine">
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">药品检索</h4>
+                      </div>
+                      <div class="panel-body">
+                        <form class="form-inline">
+                          <div class="form-group">
+                            <label for="exampleInputName2">药品名称</label>
+                            <input type="text" class="form-control" id="abb-medi" placeholder="请输入药品简写" value="">
+                          </div>
+                          <input type="button" class="btn btn-default" onclick="search_medicine()" value="查询"> </input>
+                        </form>
+
+                        <table id="checked" class="add-table table table-striped"  >
+                            <thead>
+                                <tr>
+                                  <th>药品名称</th>
+                                  <th>选择</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="medi_result">
+
+                            </tbody>
+                        </table>
+
+                        <div style="text-align:center;vertical-align:middle;">
+                            <input type="button" value="提交" onclick="add_medicine()" class="btn btn-default" >
+                        </div>
+
+                      </div>
+                    </div>
+                <button class="btn btn-default" type="submit" onclick="close_medicine()" style="display:inline-block;">关闭</button>
+            </div>
+
+            <div class="box2" id="check_result">
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title" id="cn"></h4>
+                        <div class="row">
+                            <div class="col-md-6"><small id="cd"></small></div>
+                            <div class="col-md-6"><small id="ci"></small></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+
+                        <table id="cr" class="table table-striped"  >
+                            <thead>
+                                <tr id="checknames">
+                                  <th>属性</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr id="checkvalues">
+                                    <td>结果</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;">关闭</button>
+            </div>
+
+
+
+        <script>
+        function open_medicine() {
+            document.getElementById("cover").style.display = "block";
+            document.getElementById("medicine").style.display = "block";
+            }
+        function close_medicine() {
+            document.getElementById("cover").style.display = "none";
+            document.getElementById("medicine").style.display = "none";
+        }
+        function open_check(id) {
+            document.getElementById("cover").style.display = "block";
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'search_check','id':id,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                console.log('success');
+                                result=arg.message
+                                document.getElementById("cn").innerHTML=result[0]
+                                document.getElementById("cd").innerHTML='时间：'+result[1]
+                                document.getElementById("ci").innerHTML='检查ID：'+id
+                                var t=document.getElementById("checknames");
+                                t.innerHTML='<th>属性</th>'
+                                var attributes=result[2];
+                                for (var i = 0, len = attributes.length; i < len; i++) {
+                                    hang = document.createElement("th");
+                                    hang.innerHTML=attributes[i]
+                                    t.appendChild(hang)
+                                }
+                                var t=document.getElementById("checkvalues");
+                                t.innerHTML='<td>结果</td>'
+                                var values=result[3];
+                                for (var i = 0, len = values.length; i < len; i++) {
+                                    hang = document.createElement("td");
+                                    hang.innerHTML=values[i]
+                                    t.appendChild(hang)
+                                }
+
+                            }
+                        }}
+                    )
+            document.getElementById("check_result").style.display = "block";
+
+            }
+        function close_check() {
+            document.getElementById("cover").style.display = "none";
+            document.getElementById("check_result").style.display = "none";
+        }
+
+        function save_medicine() {
+            var checkValues = []
+            var checkDomArr = document.querySelectorAll('.save-table tbody input[type=text]')
+            for (var i = 0, len = checkDomArr.length; i < len; i++) {
+                checkValues.push(new Array(checkDomArr[i].id,checkDomArr[i].value))
+            }
+            console.log(checkValues)
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'save_medicine','medi_num':checkValues,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                console.log('success');
+{#                              location.href=window.location.href;#}
+
+                            }
+                        }}
+                    )
+        }
+        function search_medicine() {
+            var abbreviated = document.getElementById("abb-medi").value
+            console.log(abbreviated)
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'search_medicine','abbreviated':abbreviated,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(arg);
+                            if(arg.status){
+                                var tbody=document.getElementById("medi_result");
+                                console.log('success');
+                                var medi_name=arg.message;
+                                for (var i = 0, len = medi_name.length; i < len; i++) {
+                                    hang = document.createElement("tr");
+                                    hang.innerHTML='<td>'+medi_name[i][1]+'</td> <td>  <input style="display: inline-block;" type="checkbox" name="select" value='+medi_name[i][0]+'></td>'
+                                    tbody.appendChild(hang)
+                                }
+
+                            }
+                        }}
+                    )
+        }
+
+        function add_medicine() {
+            var checkValues = []
+            var checkDomArr = document.querySelectorAll('.add-table tbody input[type=checkbox]:checked')
+            for (var i = 0, len = checkDomArr.length; i < len; i++) {
+                checkValues.push(new Array(checkDomArr[i].value,checkDomArr[i].parentNode.parentNode.firstChild.innerText))
+            }
+
+            var medi_tbody = document.getElementById("c2")
+            for (var i = 0, len = checkDomArr.length; i < len; i++) {
+                hang = document.createElement("tr");
+                hang.innerHTML='<td>'+checkValues[i][1]+'</td> <td> <input class="form-control" type="text" placeholder="0"  id="'+checkValues[i][0]+'" value=""> </td>'
+                medi_tbody.appendChild(hang)
+            }
+            close_medicine()
+        }
+
+
+{#        检查返回#}
+        function clickup() {
+            var checkValues = []
+            var checkDomArr = document.querySelectorAll('.multi-table tbody input[type=checkbox]:checked')
+            for (var i = 0, len = checkDomArr.length; i < len; i++) {
+                checkValues.push(checkDomArr[i].value)
+            }
+            console.log(checkValues)
+            if(checkValues.length==0){$('#errormsg').text('开检查选择不能为空');return false;}
+            else{
+                  $.ajax({url:window.location.href,
+                          type:'POST',
+                          data:{'entrance':'check','check_ids':checkValues,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                          dataType:'JSON',
+                          traditional:true,
+                          success:function(arg){
+                                console.log(arg);
+                                if(arg.status){
+                                    console.log('success');
+{#                                    location.href=window.location.href;#}
+
+                                }
+                            }}
+                    )
+        }}
+
+        function save_discription() {
+            var text=document.getElementById("discription").value
+            $.ajax({url:window.location.href,
+                      type:'POST',
+                      data:{'entrance':'save_discription','text':text,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                      dataType:'JSON',
+                      traditional:true,
+                      success:function(arg){
+                            console.log(text);
+                            if(arg.status){
+{#                                location.href=window.location.href#}
+                       }
+                            }}
+                    )
+        }
+
+        </script>
+        {% endblock %}
+
+

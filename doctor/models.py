@@ -11,12 +11,19 @@ class Remark(models.Model):
     remark = models.TextField(verbose_name="评价内容")
     score = models.FloatField(verbose_name="评价得分")
 
+    class Meta:
+        verbose_name = verbose_name_plural = "药品价格信息"
+
+    @classmethod
+    def get_all(cls):
+        return cls.objects.all()
+
 class Department(models.Model):
     """
     D3 科室表
     """
     dept_id = models.IntegerField(primary_key=True, verbose_name="科室号")
-    dept_directcor = models.ForeignKey("DoctorBase",on_delete=models.CASCADE,verbose_name="科室主任")
+    doc_id = models.ForeignKey("DoctorBase",on_delete=models.CASCADE,verbose_name="科室主任",blank=True,null=True)
     # to_fields = DoctorBase.doc_name, 指定到特定的地方
     dept_name = models.CharField(max_length=50,verbose_name="科室名")
 
@@ -74,8 +81,9 @@ class DoctorBase(models.Model):
     D6 医生信息
     """
     doc_id = models.IntegerField(primary_key=True,verbose_name="医生号")
-    doc_name = models.CharField(max_length=50,verbose_name="医生名字",unique=True)  # 外键关联到,必须设为unique
-    dept_id = models.ForeignKey("Department",on_delete=models.CASCADE,verbose_name="科室号")
+    doc_name = models.CharField(max_length=50,verbose_name="医生名字")  # 外键关联到,必须设为unique
+    # dept_id = models.ForeignKey("Department",on_delete=models.CASCADE,verbose_name="科室号")
+    dept_id = models.IntegerField(verbose_name="科室号")
     doc_title = models.CharField(max_length=50,verbose_name="医生职称")
     password = models.CharField(max_length=50,verbose_name="密码")  # 与Patient一致
 

@@ -8,12 +8,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-    <title>医院系统</title>
+    <title>北航医院-患者信息</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="北京航空航天大学经济管理学院信息系统分分析与设计课程设计" />
     <script type="application/x-javascript">
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
@@ -23,6 +22,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+
+    <link href="/static/css/register_btn.css" rel='stylesheet' type='text/css' />
     <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
     <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
@@ -37,7 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="/static/js/custom.js"></script>
     <script src="/static/js/screenfull.js"></script>
 
-    <script src="/static/js/echarts.min.js"></script>
     <script>
         $(function() {
             $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1> <a class="navbar-brand" href="index.html">患者服务系统</a></h1>
+                <h1> <a class="navbar-brand" href="index.html" style="background-color: #4b9a7b;">患者服务系统</a></h1>
             </div>
             <div class=" border-bottom">
 
@@ -139,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
-                <div class="clearfix">
+                <div class="clearfix" style="background-color: #4b9a7b;">
 
                 </div>
                 <div class="navbar-default sidebar" role="navigation">
@@ -150,6 +150,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <a onclick="index()" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">首页</span> </a>
                             </li>
 
+                            <li>
+                                <a onclick="register()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">挂号</span> </a>
+                            </li>
 
                             <li>
                                 <a onclick="case_history()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">病历</span> </a>
@@ -160,16 +163,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </li>
 
                             <li>
-                                <a onclick="decide()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">缴费</span> </a>
+                                <a onclick="fee()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">缴费</span> </a>
                             </li>
 
                             <li>
-                                <a onclick="arrange()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">排班</span> </a>
+                                <a onclick="feedback()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">反馈</span> </a>
                             </li>
 
-                            <li>
-                                <a onclick="evaluation()" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">病人评价</span> </a>
-                            </li>
 
                         </ul>
                     </div>
@@ -179,49 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
 
-                <div class="ori-1">
-                    <div class="ori-2">
-                        <div class="ori-3">
-                            <div class="list-group list-group-alternate">
-                                <a href="#" class="list-group-item"><span class="badge">10</span> <i class="ti ti-email"></i> 今日已看病人 </a>
-                                <a href="#" class="list-group-item"><span class="badge">50</span> <i class="ti ti-email"></i> 今日未看病人 </a>
-                            </div>
 
-                            <table id="doctor_pre" class="table table-striped">
-                                <div style="height: 30px;line-height:30px;">
-                                    <h4 align="center">已看病人</h4>
-                                </div>
-
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>姓名</th>
-                                        <th>年龄</th>
-                                        <th>选择</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>张三</td>
-                                        <td> 45</td>
-                                        <td> <button type="button" onclick="jump('23')" class="btn btn-default btn-sm">跳转</button> </td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-                            <div>
-                                <div style="height: 30px;line-height:30px;">
-                                    <h4 align="center">我的评价</h4>
-                                </div>
-                                <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 我的星级： <span class="glyphicon glyphicon-star" style="right:0;" aria-hidden="true"></span></a>
-                                <a href="#" class="list-group-item"> <i class="ti ti-email"></i> 满意度： </a>
-                            </div>
-
-                        </div>
-                    </div>
         </nav>
 
 
@@ -253,22 +211,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     location.href = 'http://127.0.0.1:8000/patient/check/' + patient + '/'
                 }
 
-                function decide() {
-                    var doctor = window.location.href.split('/')[5]
-                    var patient = window.location.href.split('/')[6]
-                    location.href = 'http://127.0.0.1:8000/doctor/decide/' + doctor + '/' + patient + '/'
+                function fee() {
+                    var patient = window.location.href.split('/')[5]
+                    location.href = 'http://127.0.0.1:8000/patient/fee/' + patient + '/'
                 }
 
-                function arrange() {
-                    var doctor = window.location.href.split('/')[5]
-                    var patient = window.location.href.split('/')[6]
-                    location.href = 'http://127.0.0.1:8000/doctor/arrange/' + doctor + '/' + patient + '/'
+                function register() {
+                    var patient = window.location.href.split('/')[5]
+                    location.href = 'http://127.0.0.1:8000/patient/register/' + patient + '/'
                 }
 
-                function evaluation() {
-                    var doctor = window.location.href.split('/')[5]
-                    var patient = window.location.href.split('/')[6]
-                    location.href = 'http://127.0.0.1:8000/doctor/evaluation/' + doctor + '/' + patient + '/'
+                function feedback() {
+                    var patient = window.location.href.split('/')[5]
+                    location.href = 'http://127.0.0.1:8000/patient/feedback/' + patient + '/'
                 }
             </script>
 

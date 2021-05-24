@@ -1,0 +1,102 @@
+ {% extends 'patient\base.html' %} {% block css %}
+
+<style type="text/css">
+    #pa_his>thead>tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    
+    #pa_his>tbody {
+        display: block;
+        height: 300px;
+        overflow-y: scroll;
+    }
+    
+    #pa_his>tbody>tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    
+    .qqq,
+    #pa_his>tbody>tr>td {
+        text-align: center;
+    }
+    
+    .qqq,
+    #pa_his>thead>tr>th {
+        text-align: center;
+    }
+</style>
+
+{% endblock %} {% block content%}
+
+<!--banner-->
+<div class="banner">
+
+    <h1 class="text-center">
+        {{out_pat}}
+    </h1>
+</div>
+<div class="banner" style="margin-top:30px;padding-left:30px;padding-right:50px;height: 500px;">
+
+    <ul class="outpatient_head" style="list-style:none">
+        <li style="padding-top: 10px;">时间段</li>
+        <li>
+            <p>05/21{{date1}}<br> 星期一 {{week1}}</p>
+        </li>
+        <li>
+            <p>05/21{{date2}}<br> 星期二{{week2}}</p>
+        </li>
+        <li>
+            <p>05/21{{date3}}<br> 星期三{{week3}}</p>
+        </li>
+        <li>
+            <p>05/21{{date4}}<br> 星期四 {{week4}}</p>
+        </li>
+        <li>
+            <p>05/21{{date5}}<br> 星期五 {{week5}}</p>
+        </li>
+        <li>
+            <p>05/21{{date6}}<br> 星期六 {{week6}}</p>
+        </li>
+        <li>
+            <p>05/21{{date7}}<br> 星期日 {{week7}}</p>
+        </li>
+    </ul>
+
+    <div class="outpatient_content">
+        <div class="patient_doctor">
+            <p>上午</p>
+            <ul>
+                <li>
+                    <a href="./outpatient_doctor.html?codenum=100176">
+                        <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="patient_doctor">
+            <p>下午</p>
+        </div>
+    </div>
+
+</div>
+
+<!--//banner-->
+<script>
+    function revert(id) {
+        var doctor = window.location.href.split('/')[5]
+        location.href = 'http://127.0.0.1:8000/doctor/index/' + doctor + '/' + id + '/'
+    }
+    //用来打开相应科室的门诊排班
+    function out_reg(department) {
+        var patient = window.location.href.split('/')[5]
+        location.href = 'http://127.0.0.1:8000/patient/register2/' + patient + '/' + department + '/'
+    }
+</script>
+
+
+{% endblock %}

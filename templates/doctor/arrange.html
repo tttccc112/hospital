@@ -1,0 +1,119 @@
+
+{% extends  'base.html' %}
+
+{% block css %}
+
+<style type="text/css">
+#pa_his>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#pa_his>tbody{
+    display: block;
+    height: 300px;
+    overflow-y: scroll;
+}
+#pa_his>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.qqq,#pa_his>tbody>tr>td{
+    text-align: center;
+}
+.qqq,#pa_his>thead>tr>th{
+    text-align: center;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content%}
+
+      		<!--banner-->
+		    <div class="banner">
+
+				<h1  class="text-center">
+                    排班信息（本日病人）
+				</h1>
+		    </div>
+		<!--//banner-->
+            <div class="banner" style="height: 500px;">
+
+				<table id="pa_his" class="table table-striped" >
+
+                            <thead>
+                                <tr>
+                                  <th>日期</th>
+                                  <th>检查</th>
+                                  <th>诊断</th>
+                                  <th>查看细节</th>
+                                </tr>
+                              </thead>
+
+                                <tbody >
+                                <tr>
+                                    <td>1</td>
+                                    <td>张三</td>
+                                    <td>45</td>
+                                    <td> <button onclick="revert('123')" type="button" class="btn btn-default btn-sm">Small button</button></td>
+                                </tr>
+                                </tbody>
+
+                        </table>
+		    </div>
+
+            <div class="banner" style="margin-top:30px;">
+                <div style="height: 30px;line-height:30px;">
+                    <h3 align="center" >本周工作安排看诊数</h3>
+                </div>
+                <table class="qqq table table-striped" >
+                    <thead>
+                        <tr>
+                          <th>一</th>
+                          <th>二</th>
+                          <th>三</th>
+                          <th>四</th>
+                          <th>五</th>
+                          <th>六</th>
+                          <th>日</th>
+                        </tr>
+                      </thead>
+                    <tbody>
+                        <tr>
+                            <td>50</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        </tbody>
+                    </tbody>
+                </table>
+            </div>
+
+             <div style="margin-top: 50px;text-align:center; width:100%">
+                 <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
+             </div>
+
+        <script>
+        function revert(id){
+            var doctor=window.location.href.split('/')[5]
+            location.href='http://127.0.0.1:8000/doctor/index/'+doctor+'/'+id+'/'
+        }
+        </script>
+
+
+        {% endblock %}
+
+
+
+
+
+
+

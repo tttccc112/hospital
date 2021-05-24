@@ -1,0 +1,105 @@
+ {% extends 'patient\base.html' %} {% block css %}
+
+<style type="text/css">
+    #pa_his>thead>tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    
+    #pa_his>tbody {
+        display: block;
+        height: 300px;
+        overflow-y: scroll;
+    }
+    
+    #pa_his>tbody>tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    
+    .qqq,
+    #pa_his>tbody>tr>td {
+        text-align: center;
+    }
+    
+    .qqq,
+    #pa_his>thead>tr>th {
+        text-align: center;
+    }
+</style>
+
+{% endblock %} {% block content%}
+
+<!--banner-->
+<div class="banner">
+
+    <h1 class="text-center">
+        预约挂号
+    </h1>
+</div>
+<div class="banner" style="margin-top:30px;padding-left:30px;padding-right:50px;height: 500px;">
+
+
+    <div>
+        <a onclick="out_reg('心血管内科门诊')">
+            <div class="btn3_colored btn3_div ">
+                心血管内科门诊</div>
+        </a>
+
+        <a onclick="out_reg('消化内科门诊')">
+            <div class="btn3_colored btn3_div ">
+                消化内科门诊</div>
+        </a>
+        <a onclick="out_reg('内分泌内科门诊')">
+            <div class="btn3_colored btn3_div ">
+                内分泌内科门诊</div>
+        </a>
+
+        <a onclick="out_reg('呼吸内科门诊')">
+            <div class="btn3_colored btn3_div ">
+                呼吸内科门诊</div>
+        </a>
+        <a onclick="out_reg('血液内科门诊')">
+            <div class="btn3_colored btn3_div ">
+                血液内科门诊</div>
+        </a>
+        <a onclick="out_reg('神经外科门诊')">
+            <div class="btn3_colored btn3_div ">
+                神经外科门诊</div>
+        </a>
+
+
+        <a onclick="out_reg('泌尿外科门诊')">
+            <div class="btn3_colored btn3_div ">
+                泌尿外科门诊</div>
+        </a>
+
+        <a onclick="out_reg('小儿外科门诊')">
+            <div class="btn3_colored btn3_div ">
+                小儿外科门诊</div>
+        </a>
+
+        <a onclick="out_reg('德国骨科门诊')">
+            <div class="btn3_colored btn3_div ">
+                德国骨科门诊</div>
+        </a>
+    </div>
+</div>
+
+<!--//banner-->
+<script>
+    function revert(id) {
+        var doctor = window.location.href.split('/')[5]
+        location.href = 'http://127.0.0.1:8000/doctor/index/' + doctor + '/' + id + '/'
+    }
+    //用来打开相应科室的门诊排班
+    function out_reg(department) {
+        var patient = window.location.href.split('/')[5]
+        location.href = 'http://127.0.0.1:8000/patient/register2/' + patient + '/' + department + '/'
+    }
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,473 @@
+/*移动端*/
+.fix-wrap {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  display: -ms-flexbox;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+
+  }
+
+  .fix-wrap {
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+
+.mobile_header {
+  height: 225px;
+  display: none;
+}
+
+.head-top {
+  height: 150px;
+}
+
+.header-menu-item {
+  font-size: 20px;
+  line-height: 1em;
+  width: 400px;
+  margin-right: 20px;
+}
+
+.line {
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+}
+
+.head-search {
+  min-width: 115px;
+  height: 38px;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 19px;
+  padding-left: 35px;
+  position: relative;
+}
+
+.head-search::before {
+  color: #666;
+  position: absolute;
+  height: 16px;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  line-height: 1em;
+  display: block;
+}
+
+.head-search input {
+  width: 100%;
+  height: 100%;
+  width: 80px;
+  transition: all 0.3s ease;
+}
+
+.head-search input:focus {
+  width: 215px;
+  transition: all 0.3s ease;
+}
+
+.head-nav {
+  height: 75px;
+  border-top: 1px solid #f5f5f5;
+}
+
+.head-nav-wrapper {
+  height: 100%;
+}
+
+.head-nav-wrapper>span:nth-child(2) {
+  /*display: flex !important;*/
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-item {
+  position: relative;
+  height: 100%;
+}
+
+.nav-name {
+  height: 100%;
+  font-size: 22px;
+  position: relative;
+}
+
+/* .nav-name:hover {
+  color: #fff;
+} */
+
+.nav-name::before ,.more_btn{
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1.04rem;
+    background-color: red;
+    display: block;
+    margin: 0 auto;
+    /* left: 0; */
+    right: 0rem!important;
+    top: 0rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-name:hover::before {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.nav-child {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  min-width: 100px;
+  box-shadow: 0 -2px 24px -9px rgb(169, 217, 172);
+  background-color: #fff;
+  display: none;
+}
+
+.nav-child::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  left: 0;
+  right: 0;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  position: absolute;
+  top: -20px;
+  margin: 0 auto;
+}
+
+.nav-item:hover .nav-child {
+  display: block;
+}
+
+.nav-sub {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile_header {
+    height: 1.2rem;
+    position: relative;
+    z-index: 9999;
+    display: block;
+  }
+
+  .head-top {
+    width: 100%;
+    height: 1.18rem;
+    border-top: 0.01rem solid #f0f0f0;
+    border-bottom: 0.01rem solid #f0f0f0;
+    background: #fff;
+    position: fixed;
+    z-index: 10;
+  }
+
+  .head-logo {
+    width: 4.51rem;
+    margin-left: 0.22rem;
+  }
+
+  .header-menu-item,.head-search
+  {
+    display: none;
+  }
+
+  .mobile-menu {
+    /* display: inline-block; */
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu div.ch {
+    position: relative;
+    width: 0.6rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    display: inline-block;
+    background: #f4faf8;
+    border-radius: 50%;
+    color: #468f73;
+    margin-right: 0.48rem;
+    font-size: 0.28rem;
+  }
+  .mobile-menu div.ch span{
+    width: 0.6rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    display: inline-block;
+    background: #f4faf8;
+    border-radius: 50%;
+    color: #468f73;
+    font-size: 0.28rem;
+  }
+  .mobile-language-menu{
+    width: 0.6rem;
+    background: #f4faf8;
+    position: absolute;
+    top: 0;
+    border-radius: 0.3rem;
+  }
+  .mobile-language-menu a {
+    width: 0.6rem;
+    height: 0.6rem;
+    font-size: 0.28rem!important;
+    border-bottom: 0.01rem solid #468f73;
+    line-height: 0.6rem!important;
+    padding-bottom: 0.1rem;
+  }
+  .mobile-language-menu a:last-child{
+    font-size: 0.2rem!important;
+    border-bottom:none;
+  }
+  .mobile-menu a.searchBtn {
+    width: 0.6rem;
+    height: 0.6rem;
+    display: inline-block;
+    margin-right: 0.48rem;
+    background: url(https://tjh.com.cn/tjh_en/img/mobile_searchBtn.png) no-repeat center;
+    background-size: 0.34rem 0.36rem;
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    width: 0.47rem;
+    height: 0.36rem;
+    display: inline-block;
+    margin-right: 0.24rem;
+  }
+
+  .mobile-menu-btn a {
+    width: 0.47rem;
+    height: 0.36rem;
+    display: inline-block;
+    background: url(https://tjh.com.cn/tjh_en/img/mobile_menuBtn.png) no-repeat center;
+    background-size: 0.47rem 0.36rem;
+    /* transition: all .7s ease; */
+  }
+
+  .mobile-menu-btn a.mobile-menu-close {
+    background: url(https://tjh.com.cn/tjh_en/img/mobile_close.png) no-repeat center;
+    background-size: 0.32rem 0.32rem;
+    /* transition: all .7s ease;
+    transform: rotateZ(90deg); */
+  }
+
+  .head-nav {
+    width: 100%;
+    height: calc(100vh - 1.18rem);
+    position: fixed;
+    left: 0;
+    top: 1.18rem;
+    background: #fff;
+    display: none;
+  }
+
+  .head-nav-wrapper {
+    width: 7.02rem;
+    height: 100%;
+    overflow-y: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 0.34rem 0 0 0;
+  }
+
+  .nav-item {
+    position: relative;
+    height: auto;
+    margin: 0 0 0.34rem 0;
+  }
+.nav-item:last-child{
+  padding-bottom:1rem;
+}
+
+  .nav-name {
+    width: 7.02rem;
+    height: 1.04rem;
+    background-color: #f4faf8;
+    background-image: url(https://tjh.com.cn/tjh_en/img/slide_icon_on.png);
+    background-repeat: no-repeat;
+    background-position: 6.28rem center;
+    background-size: 0.26rem;
+    font-size: 0.3rem;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 0.48rem;
+  }
+
+  .nav-name:hover {
+    color: #333;
+  }
+
+  .nav-name:hover::before {
+    opacity: 0;
+  }
+
+  .nav-item a.cur {
+    background-color: #4b997b;
+    background-image: url(https://tjh.com.cn/tjh_en/img/slide_icon_off.png);
+    background-repeat: no-repeat;
+    background-position: 6.28rem center;
+    background-size: 0.26rem;
+    color: #fff;
+  }
+
+  .nav-child {
+    position: static;
+    transform: none;
+    width: 7.02rem;
+    min-width: auto;
+    box-shadow: none;
+    background-color: #f4faf8;
+    display: none;
+    padding: 0.3rem 0;
+  }
+
+  .nav-child::before {
+    content: "";
+    display: none;
+    width: 0;
+    height: 0;
+    left: 0;
+    right: 0;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    position: absolute;
+    top: -20px;
+    margin: 0 auto;
+  }
+
+  .nav-item:hover .nav-child {
+    display: none;
+  }
+
+  .nav-sub {
+    display: block;
+    width: 100%;
+    padding: 0 0.48rem;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    text-align: left;
+    font-size: 0.3rem;
+    white-space: nowrap;
+  }
+
+  .head-search {
+    width: 7.02rem;
+    height: 1.04rem;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 1.04rem;
+    padding-left: 0.48rem;
+    padding-right: 1.46rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .head-search::before {
+    color: #666;
+    position: absolute;
+    height: 16px;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    line-height: 1em;
+    display: none;
+  }
+
+  .head-search input {
+    width: 5.08rem;
+    height: 1.04rem;
+    transition: none;
+    color: #999;
+  }
+
+  .head-search input:focus {
+    width: 5.08rem;
+    transition: none;
+  }
+
+  .mobile-head-searchBoxBg {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.8;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  .mobile-head-searchBtn {
+    width: 0.92rem;
+    height: 0.92rem;
+    background-color: #4b9a7b;
+    background-image: url(https://tjh.com.cn/tjh_en/img/mobile-head-searchBtn.png);
+    background-size: 0.34rem 0.36rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.06rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: block;
+  }
+  .head-logo {
+    border: none;
+  }
+}
+
+
+
+
+
