@@ -1,5 +1,10 @@
+import random
 from django.db import models
 # Create your models here.
+
+def random_mail():
+    return str(random.randint(10000, 99999)) + "@163.com"
+
 
 class Remark(models.Model):
     """
@@ -86,6 +91,7 @@ class DoctorBase(models.Model):
     # dept_id = models.ForeignKey("Department",on_delete=models.CASCADE,verbose_name="科室号")
     dept_id = models.IntegerField(verbose_name="科室号")
     doc_title = models.CharField(max_length=50,verbose_name="医生职称")
+    doc_mail = models.EmailField(verbose_name="医生邮箱",default=random_mail)
     password = models.CharField(max_length=50,verbose_name="密码")  # 与Patient一致
 
     class Meta:
