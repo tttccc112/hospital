@@ -54,20 +54,71 @@
     width: calc(100% / 8);
 }
 
+.outpatient_blank {
+    width: 100%;
+    background-color: #fff;
+    background-size: 100% 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    color: #333;
+    line-height: 23px;
+    text-align: center;
+    padding: 11px 0;
+    font-family: "Microsoft YaHei";
+}
+
+.outpatient_blank li {
+    width: calc(100% / 8);
+    border-left: #555555;
+}
+
+.outpatient_blank li :hover {
+    text-decoration: none;
+}
+
+.outpatient_blank p {
+    color: #333;
+    margin-top: 10px;
+}
+
 .outpatient_content {
     width: 100%;
-    /* padding-left: 12.5%; */
-    position: relative;
-    border-left: 1px solid #f2f2f2;
-    border-bottom: 1px solid #f2f2f2;
+    height: 68px;
+    background-size: 100% 100%;
     display: flex;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    color: #333;
+    line-height: 23px;
+    text-align: center;
+    padding: 11px 0;
+    font-family: "Microsoft YaHei";
+}
+
+.outpatient_content li {
+    width: calc(100% / 8);
 }
 
 .outpatient_doctor {
-    width: 100%;
-    /* padding-left: 12.5%; */
-    position: relative;
-    border-left: 1px solid #f2f2f2;
-    border-bottom: 1px solid #f2f2f2;
+    /* position: absolute; */
+    width: 12.5%;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    /* transform: translateY(-50%); */
+    color: #333;
+    font-size: 14px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zhuyuanqu {
+    font-size: 10px;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #4b9a7b!important;
+    border-radius: 1rem 1rem 1rem 1rem;
 }

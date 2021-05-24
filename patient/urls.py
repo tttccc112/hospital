@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^register/(\w+)', views.Register.as_view()),
     
     url(r'^register2/(\w+)/(\w+)', views.Register2.as_view()),
+    url(r'^register3/(\w+)/(\w+)/(\w+)', views.Register3.as_view()),
     url(r'^feedback/(\w+)', views.Feedback.as_view()),
 ]

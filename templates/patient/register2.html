@@ -65,24 +65,124 @@
             <p>05/21{{date7}}<br> 星期日 {{week7}}</p>
         </li>
     </ul>
+    <div>
+        <ul class="outpatient_blank" style="list-style:none;margin-top: 10px;">
+            <p class="outpatient_doctor">
+                上午
+            </p>
+            <li>
+                <a onclick="guahao('刘南植')">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
 
-    <div class="outpatient_content">
-        <div class="patient_doctor">
-            <p>上午</p>
-            <ul>
+                </a>
+            </li>
+            <li>
+
+
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植22</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>4444</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>55552</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
                 <li>
+                    <a href="./outpatient_doctor.html?codenum=100176">
+                        <p>刘66662</p><span class="zhuyuanqu">出诊</span>
+
+                    </a>
+                    <a href="./outpatient_doctor.html?codenum=100176">
+                        <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                    </a>
                     <a href="./outpatient_doctor.html?codenum=100176">
                         <p>刘南植</p><span class="zhuyuanqu">出诊</span>
 
                     </a>
                 </li>
-            </ul>
-        </div>
-        <div class="patient_doctor">
-            <p>下午</p>
-        </div>
+            </li>
+        </ul>
     </div>
+    <div>
+        <ul class="outpatient_blank" style="list-style:none;margin-top: 10px;">
+            <p class="outpatient_doctor">
+                下午
+            </p>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
 
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+                <a href="./outpatient_doctor.html?codenum=100176">
+                    <p>刘南植</p><span class="zhuyuanqu">出诊</span>
+
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <!--//banner-->
@@ -95,6 +195,12 @@
     function out_reg(department) {
         var patient = window.location.href.split('/')[5]
         location.href = 'http://127.0.0.1:8000/patient/register2/' + patient + '/' + department + '/'
+    }
+
+    function guahao(doctor) {
+        var department = window.location.href.split('/')[6]
+        var patient = window.location.href.split('/')[5]
+        location.href = 'http://127.0.0.1:8000/patient/register3/' + patient + '/' + department + '/' + doctor + '/'
     }
 </script>
 

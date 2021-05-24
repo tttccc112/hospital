@@ -166,7 +166,6 @@ class Register(View):
 # 挂号系统2
 class Register2(View):
     def get(self,request,pat,out_pat):
-        print(out_pat)
         # 接口处
         # 输入一个科室 返回本日及七天后的该科室医生排班信息
         datetime.datetime.now().strftime('%m-%d-%w')
@@ -185,4 +184,25 @@ class Register2(View):
             return render(request, 'patient/case_history.html')
         else:
             return render(request, 'patient/case_history.html')
+
+# 挂号系统3
+class Register3(View):
+    def get(self,request,pat,department,doc):
+        # 接口处
+        # 输入医生id得到医生姓名，科室，职称的字典
+        dic={'doc_docname':'谢谢谢','doc_title':'副主任医师','doc_dep':'德国骨科'}
+        return render(request, 'patient/register3.html',dic)
     
+    def post(self,request,pat):
+        print(request.user)
+        print(request.path)
+        pid = request.POST.get('patient_id', None)
+        pname = request.POST.get('patient_name', None)
+        pbirth = request.POST.get('patient_birthday', None)
+
+        repeat_pwd = request.POST.get('repeat_pwd', None)
+        patient_pwd = request.POST.get('patient_pwd', None)
+        if patient_pwd==repeat_pwd:
+            return render(request, 'patient/case_history.html')
+        else:
+            return render(request, 'patient/case_history.html')
