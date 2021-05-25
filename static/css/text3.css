@@ -1,0 +1,23 @@
+.tex_input3 {
+    width: 90%;
+    height: 199px;
+    resize: none;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-family: "Microsoft YaHei";
+    border-width: 1px;
+    border-color: #8f8d8d;
+    outline-color: #4b9a7b;
+}
+
+.text_input22 {
+    width: 90%;
+    height: 80%;
+}
+
+.centeredd {
+    text-align: center;
+}

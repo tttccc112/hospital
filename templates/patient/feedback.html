@@ -36,68 +36,29 @@
 <div class="banner">
 
     <h1 class="text-center">
-        排班信息（本日病人）
+        反馈信息
     </h1>
 </div>
 <!--//banner-->
 <div class="banner" style="height: 500px;">
 
-    <table id="pa_his" class="table table-striped">
+    <form method='POST' class="tex_input center ">
+        {% csrf_token %}
+        <div style="width:70%;">
+            <textarea type="text " placeholder="请写下您宝贵的意见，谢谢！" class="btn-border1 btn-border2 tex_input3 txa_tran " name="feedback_msg">{{bfr}}</textarea>
 
-        <thead>
-            <tr>
-                <th>日期</th>
-                <th>检查</th>
-                <th>诊断</th>
-                <th>查看细节</th>
-            </tr>
-        </thead>
 
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td>45</td>
-                <td> <button onclick="revert('123')" type="button" class="btn btn-default btn-sm">Small button</button></td>
-            </tr>
-        </tbody>
+            <div style="padding-top: 10px; margin-left: 80%;">
+                <button style="display: inline-block; " class="btn1 btn-border3 " type="submit ">提交</button>
 
-    </table>
+            </div>
+        </div>
+
+    </form>
 </div>
 
-<div class="banner" style="margin-top:30px;">
-    <div style="height: 30px;line-height:30px;">
-        <h3 align="center">本周工作安排看诊数</h3>
-    </div>
-    <table class="qqq table table-striped">
-        <thead>
-            <tr>
-                <th>一</th>
-                <th>二</th>
-                <th>三</th>
-                <th>四</th>
-                <th>五</th>
-                <th>六</th>
-                <th>日</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>50</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-        </tbody>
-        </tbody>
-    </table>
-</div>
-
-<div style="margin-top: 50px;text-align:center; width:100%">
-    <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
+<div style="margin-top: 50px;text-align:center; width:100% ">
+    <button style="display: inline-block; " class="btn btn-default btn-lg " type="submit ">回首页</button>
 </div>
 
 <script>

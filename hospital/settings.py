@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'hospital.urls'
 
 TEMPLATES = [
@@ -128,8 +129,8 @@ TEMPLATE_DIRS = (
     'doctor',
 )
 
-STATICFILES_DIRS= (
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR,  'static'),
     'patient',
-     'doctor',
+    'doctor',
 )

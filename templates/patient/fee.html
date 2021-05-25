@@ -114,17 +114,28 @@
 
         <thead>
             <tr>
-                <th>日期</th>
+                <th>ID</th>
                 <th>检查</th>
-                <th>缴费</th>
+                <th>日期</th>
+                <th>金额</th>
+                <th>缴费情况</th>
             </tr>
         </thead>
 
         <tbody>
             <tr>
-                <td>1</td>
-                <td>张三</td>
-                <td> <button type="button" onclick="open_check(11)" class="btn btn-default btn-sm">缴费</button>
+                <td>111110</td>
+                <td>眼角检查</td>
+                <th>2021-5-20</th>
+                <th>10.00</th>
+                <td>已缴费</td>
+            </tr>
+            <tr>
+                <td>111111</td>
+                <td>胃镜检查</td>
+                <th>2021-5-20</th>
+                <th>100.00</th>
+                <td> <button type="button" onclick="open_check(11)" class="btn btn-default btn-sm">未缴费</button>
                 </td>
             </tr>
         </tbody>
@@ -150,25 +161,19 @@
         </div>
         <div class="panel-body">
 
-            <table id="cr" class="table table-striped">
-                <thead>
-                    <tr id="checknames">
-                        <th>属性</th>
 
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <tr id="checkvalues">
-                        <td>结果</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
+            <div>
+                <img src='/static/images/fee.png' style="margin-right: 15px;">
+            </div>
         </div>
     </div>
-    <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;">关闭</button>
+    <div>
+
+        <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;margin-right: 30px;">支付</button>
+
+        <button class="btn btn-default" type="submit" onclick="close_check()" style="display:inline-block;">关闭</button>
+    </div>
 </div>
 
 <script>
