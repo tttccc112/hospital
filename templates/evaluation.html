@@ -1,0 +1,183 @@
+
+{% extends  'base.html' %}
+
+{% block css %}
+<style type="text/css">
+#pa_his>thead>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#pa_his>tbody{
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
+}
+#pa_his>tbody>tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#pa_his>tbody>tr>td,th{
+    text-align: center;
+}
+</style>
+
+
+{% endblock %}
+
+
+{% block content%}
+
+            <div class="banner" style="maigin-top:30px;height: 500px;">
+                <div class="row">
+                  <div class="col-md-6">
+                      <div id="name1" style="width: 100%;height:400px;">
+                        <script type="text/javascript">
+                            var chartDom = document.getElementById('name1');
+                            var myChart = echarts.init(chartDom);
+                            var option;
+
+                            option = {
+                                title: {
+                                    text: '评级',
+                                    right: 'right'
+                                },
+                                tooltip: {
+                                    trigger: 'item'
+                                },
+                                legend: {
+                                    bottom: '1%',
+                                    left: 'center'
+                                },
+                                series: [
+                                    {
+                                        name: '访问来源',
+                                        type: 'pie',
+                                        radius: ['40%', '70%'],
+                                        avoidLabelOverlap: false,
+                                        itemStyle: {
+                                            borderRadius: 10,
+                                            borderColor: '#fff',
+                                            borderWidth: 2
+                                        },
+                                        label: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '40',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        },
+                                        data: [
+                                            {value: 1048, name: '一星'},
+                                            {value: 735, name: '两星'},
+                                            {value: 580, name: '三星'},
+                                            {value: 484, name: '四星'},
+                                            {value: 300, name: '五星'}
+                                        ]
+                                    }
+                                ]
+                            };
+
+                            option && myChart.setOption(option);
+
+                    </script>
+                        </div>
+                          <h3  style="margin-top: 20px;" class="text-center">我的评级：4.2</h3>
+                  </div>
+                  <div class="col-md-6"><div id="name2" style="width: 100%;height:400px;">
+                    <script type="text/javascript">
+                        var chartDom = document.getElementById('name2');
+                        var myChart = echarts.init(chartDom);
+                        var option;
+
+                        option = {
+                            title: {
+                                text: '好评',
+                                right: 'right'
+                            },
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            legend: {
+                                bottom: '5%',
+                                left: 'center'
+                            },
+                            series: [
+                                {
+                                    name: '评价分级',
+                                    type: 'pie',
+                                    radius: '50%',
+                                    data: [
+                                        {value: 78, name: '好评'},
+                                        {value: 22, name: '差评'}
+                                    ],
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+
+                        option && myChart.setOption(option);
+
+
+                </script>
+                </div>
+                      <h3 style="margin-top: 20px;" class="text-center">我的好评：78%</h3>
+                  </div>
+                </div>
+
+		    </div>
+
+            <div class="banner" style="margin-top:30px;">
+                <div style="height: 30px;line-height:30px;">
+                    <h3 align="center" >近期评价</h3>
+                </div>
+                <table id="pa_his" class="table table-striped" >
+                    <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>日期</th>
+                          <th>评价内容</th>
+                          <th>打分</th>
+
+                        </tr>
+                      </thead>
+                    <tbody >
+                        <tr>
+                            <td>1</td>
+                            <td>2000-1-12</td>
+                            <td>妙手回春！</td>
+                            <td>4 <span class="glyphicon glyphicon-star" style="float:right" aria-hidden="true"></span></td>
+                        </tr>
+                        </tbody>
+                    </tbody>
+                </table>
+            </div>
+
+             <div style="margin-top: 50px;text-align:center; width:100%">
+                 <button style="display: inline-block; " class="btn btn-default btn-lg" type="submit">回首页</button>
+             </div>
+
+
+
+        {% endblock %}
+
+
+
+
+
+
+

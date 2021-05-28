@@ -71,6 +71,7 @@ class CheckItem(models.Model):
     check_id = models.CharField(max_length=50,primary_key=True,verbose_name="检查项目id")
     check_name = models.CharField(max_length=50,verbose_name="检查项目名字")
     check_price = models.IntegerField(verbose_name="检查价格")
+    check_info = models.CharField(max_length=100,verbose_name="检查相关信息")
 
     class Meta:
         verbose_name = verbose_name_plural = "检查价格"
