@@ -310,3 +310,8 @@ def load14(request):
     return HttpResponse("D14完成!")
 
 
+def test(request):
+    from patient.models import Diagnose
+    a = Diagnose.objects.filter(diagnose_id='DIAGNOSE1')
+    print(a)
+    return HttpResponse(str(a))
