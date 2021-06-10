@@ -2,8 +2,9 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
 import xlrd
+import pandas as pd
 import json
-import time
+import datetime
 
 from django.shortcuts import render,HttpResponse
 from doctor.models import Remark,Department,Medicine,\
@@ -179,6 +180,27 @@ def profile(request,doc,pat):
 def test():
     print("hello world")
 
+
+def load2(request):
+    """
+    D2 医生评价信息
+    """
+    RemarkList = []
+    data = pd.read_excel("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D2医生评价信息.xls")
+    # nrows = data.shape[0]  # 获取表的行数
+    for ind,row in data.iterrows():
+        remark_id,diagnose_id,doc_id,remark_date,remark,score =row[0],\
+            row[1],row[2],row[3],row[4],row[5]  # date in excel -> string in python
+        RemarkList.append(models.Remark(remark_id=remark_id, remark_date=remark_date,
+                                        remark=remark, diagnose_id_id=diagnose_id,
+                                        score=score, doctor_id_id=doc_id))
+    Remark.objects.bulk_create(RemarkList)
+    return HttpResponse("D2完成!")
+
+
+
+
+
 def load3(request):
     """
     D3 部门表
@@ -254,7 +276,8 @@ def home(request):
             # D6
             temp = table.row_values(i)
             docid,deptid,title,docname,password = temp[0],temp[1],temp[2],temp[3],temp[4]
-            DoctorBaseList.append(models.DoctorBase(doc_id=docid,dept_id=deptid,doc_title=title,doc_name=docname,password=password))
+            DoctorBaseList.append(models.DoctorBase(doc_id=docid,dept_id=deptid,doc_title=title,
+                                                    doc_name=docname,password=password))
     DoctorBase.objects.bulk_create(DoctorBaseList)
     return HttpResponse("D6完成!")
 

@@ -5,6 +5,7 @@ urlpatterns = [
     #url(r'^index/(\wt)/(\wt)', views.index),
     #url(r'^choose/', views.choose.as_view()),
     url(r'^home/', views.home),
+    url(r'^load2/',views.load2),
     url(r'^load3/',views.load3),
     url(r'^load4/',views.load4),
     url(r'^load5/',views.load5),
