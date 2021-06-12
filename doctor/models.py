@@ -135,11 +135,22 @@ class CheckDetail(models.Model):
     """
     D12 检查细则
     """
+    CHECK_UNPAID = 0
+    CHECK_PAID = 1
+    CHECK_OVER = 2
+    CHECK_STATUS = (
+        (CHECK_UNPAID, '未缴费'),
+        (CHECK_PAID, '已缴费'),
+        (CHECK_OVER, '已完成')
+    )
+
     detail_id = models.CharField(max_length=50,primary_key=True,verbose_name="详情id")
     diagnose_id = models.ForeignKey("patient.Diagnose",on_delete=models.CASCADE,verbose_name="诊断id")
     check_id = models.ForeignKey("CheckItem",on_delete=models.CASCADE,verbose_name="检查id")
     report_content = models.CharField(max_length=200,verbose_name="检查结果")
     check_time = models.DateField(verbose_name="检查时间")
+    check_status = models.PositiveIntegerField(default=CHECK_OVER,
+                   choices=CHECK_STATUS,verbose_name="检查状态")
 
     class Meta:
         verbose_name = verbose_name_plural = "检查详情"

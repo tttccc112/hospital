@@ -37,6 +37,8 @@ class Fee(models.Model):
     fee_content = models.CharField(max_length=200,verbose_name="收费明细")
     fee_total = models.FloatField(verbose_name="收费金额")
     fee_date = models.DateField(verbose_name="收费时间")
+    # status = models.PositiveIntegerField(default=STATUS_UNPAID,
+    #                 choices=STATUS_ITEM, verbose_name="当前状态")
 
     class Meta:
         verbose_name = verbose_name_plural = "收费流水"
