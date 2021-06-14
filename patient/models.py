@@ -31,14 +31,20 @@ class Register(models.Model):
 
 class Fee(models.Model):
     """D7 收费流水信息"""
+    STATUS_UNPAID = 0
+    STATUS_PAID = 1
+    STATUS_ITEM = (
+        (STATUS_UNPAID,"未缴费"),
+        (STATUS_PAID,"已缴费")
+    )
     fee_id = models.IntegerField(primary_key=True,verbose_name="收费单id")
     diagnose_id = models.ForeignKey("Diagnose",on_delete=models.CASCADE, verbose_name="诊断id",blank=True,null=True)
     register_id = models.ForeignKey("Register", on_delete=models.CASCADE, verbose_name="挂号id",blank=True,null=True)
     fee_content = models.CharField(max_length=200,verbose_name="收费明细")
     fee_total = models.FloatField(verbose_name="收费金额")
     fee_date = models.DateField(verbose_name="收费时间")
-    # status = models.PositiveIntegerField(default=STATUS_UNPAID,
-    #                 choices=STATUS_ITEM, verbose_name="当前状态")
+    status = models.PositiveIntegerField(default=STATUS_UNPAID,
+                choices = STATUS_ITEM,verbose_name="缴费状态")
 
     class Meta:
         verbose_name = verbose_name_plural = "收费流水"
@@ -62,6 +68,7 @@ class Diagnose(models.Model):
     medicine_id = models.CharField(max_length=50,verbose_name="开药id")
     report_id = models.CharField(max_length=50,verbose_name="检查id",default="REPORT0")
     fee_id = models.CharField(max_length=100,verbose_name="收费id")
+
 
     class Meta:
         verbose_name = verbose_name_plural = "诊断信息"

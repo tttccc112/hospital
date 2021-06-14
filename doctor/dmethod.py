@@ -21,7 +21,6 @@ class Decide:
         for key,value in attr_dict.items():
             if value == None:
                 attr_dict[key] = ""
-        print(attr_dict)
         return attr_dict
 
 
@@ -37,33 +36,9 @@ class Decide:
         test = test.drop(['pdate','id','pid_id'])  # 提取属性
 
         loaded_model = pickle.load(open("classifier.pkl", "rb"))
-        print("test",test)
         y_pred = loaded_model.predict(np.array(test).reshape((1,-1)))  # 只预测一个样本,需要转换维度
-        print(y_pred[0])   # 显示预测结果
-        if y_pred[0] == 2:
+        if y_pred[0] == 2:   # 显示预测结果
             rtn = "急性心梗"
         else:
             rtn = "陈旧性心梗"
         return  rtn
-
-
-
-    # @classmethod
-    # def predict(cls,pid):  error
-    #     """
-    #     对患者的情况进行预测
-    #     :param pid:
-    #     :return:
-    #     """
-    #     # 准备数据
-    #     test_dict = PatientHealth.objects.filter(pid_id=pid).select_related()
-    #     test = pd.DataFrame(list(test_dict.values())).iloc[-1]
-    #     # print(test_X)
-    #     test_id = test["id"]
-    #     train_dict = PatientHealth.objects.exclude(id=test_id)
-    #     train = pd.DataFrame(list(train_dict.values()))
-    #     # print(train_X.head())
-    #
-    #     # 构建分类器
-    #     clf = XGBClassifier()
-
