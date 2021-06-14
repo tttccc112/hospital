@@ -148,3 +148,19 @@ def load13(request):
                                                       stup=stup,std=std,q=q))
     PatientHealth.objects.bulk_create(PatientHealthList)
     return HttpResponse("D13完成!")
+
+def encrypt(request):
+    """
+    D11 转换成加密存储
+    """
+    data = pd.read_excel("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D11患者信息_new.xls")
+    #password = data['password']
+    #encrypted_password = data['encrypted_password']
+    for ind,row in data.iterrows():
+        password = row['password']
+        encrypted_password = row['encrypted_password']
+        # print(password,encrypted_password)
+        PatientBase.objects.filter(password=password).update(password=encrypted_password)
+        # a.password = encrypted_password
+        # print(a)
+    return HttpResponse('D11加密完成')

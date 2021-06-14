@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^load10/',views.load10),
     url(r'^load11/',views.load11),
     url(r'^load13/',views.load13),
+    url(r'^encrypt/',views.encrypt),
 ]

@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^load9/',views.load9),
     url(r'^load12/',views.load12),
     url(r'^load14/',views.load14),
+    url(r'^encrypt/',views.encrypt),
 
     url(r'^index/(\w+)/(\w+)', views.index.as_view()),
     url(r'^history/(\w+)/(\w+)', views.history.as_view()),
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^profile/(\w+)/(\w+)', views.profile),
 
     url(r'^test',views.test)
+
 
     ]
 

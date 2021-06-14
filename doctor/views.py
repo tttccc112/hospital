@@ -124,7 +124,8 @@ class decide(View):
         #decide网页独有：
         #1、字典，{各属性}   （由于属性太多，请给每个属性都取个名字，然后把值传给我，没有就空字符串）
         dmethod.Decide.get_decide_attr("19794")  # 返回字典，{各属性}
-
+        a = dmethod.Decide.predict("19794")
+        print(a)
         return render(request,'decide.html')
 
     def post(self,request,doc,pat):
@@ -196,8 +197,6 @@ def load2(request):
                                         score=score, doctor_id_id=doc_id))
     Remark.objects.bulk_create(RemarkList)
     return HttpResponse("D2完成!")
-
-
 
 
 
@@ -311,9 +310,9 @@ def load12(request):
             continue
         else:
             temp = table.row_values(i)
-            diagnose_id,detail_id,check_id,result,time = temp[0], temp[1], temp[2], temp[3], temp[4]
+            diagnose_id,detail_id,check_id,result,time,status = temp[0], temp[1], temp[2], temp[3], temp[4],temp[5]
             CheckDetailList.append(models.CheckDetail(diagnose_id_id=diagnose_id,detail_id=detail_id,
-                                            check_id_id=check_id,report_content=result,check_time=time))
+                                            check_id_id=check_id,report_content=result,check_time=time,check_status=status))
     CheckDetail.objects.bulk_create(CheckDetailList)
     return HttpResponse("D12完成!")
 
@@ -333,8 +332,20 @@ def load14(request):
     return HttpResponse("D14完成!")
 
 
-def test(request):
-    from patient.models import Diagnose
-    a = Diagnose.objects.filter(diagnose_id='DIAGNOSE1')
-    print(a)
-    return HttpResponse(str(a))
+def encrypt(request):
+    """
+    D6 转换成加密存储
+    """
+    data = pd.read_excel("E:\\大三下2021春\\01信息系统分析与设计\\project\\data\\D6医生信息_new.xls")
+    #password = data['password']
+    #encrypted_password = data['encrypted_password']
+    for ind,row in data.iterrows():
+        password = row['password']
+        encrypted_password = row['encrypted_password']
+        # print(password,encrypted_password)
+        a = DoctorBase.objects.filter(password=password).update(password=encrypted_password)
+        # a.password = encrypted_password
+        # print(a)
+    return HttpResponse('D6加密完成')
+
+

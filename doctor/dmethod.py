@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 import pickle
-from xgboost import XGBClassifier
-from doctor.models import *
 from patient.models import *
 from django.forms.models import model_to_dict     # 将models转化为dict
 
@@ -39,10 +37,15 @@ class Decide:
         test = test.drop(['pdate','id','pid_id'])  # 提取属性
 
         loaded_model = pickle.load(open("classifier.pkl", "rb"))
-        # print(test)
+        print("test",test)
         y_pred = loaded_model.predict(np.array(test).reshape((1,-1)))  # 只预测一个样本,需要转换维度
-        print(y_pred)   # 显示预测结果
-        return  y_pred
+        print(y_pred[0])   # 显示预测结果
+        if y_pred[0] == 2:
+            rtn = "急性心梗"
+        else:
+            rtn = "陈旧性心梗"
+        return  rtn
+
 
 
     # @classmethod
