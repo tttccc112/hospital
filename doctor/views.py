@@ -157,3 +157,9 @@ class evaluation(View):
 
 def profile(request,doc,pat):
     return render(request,'profile.html')
+
+def signin(request):
+    return render(request,'signin.html')
+
+def signup(request):
+    return render(request,'signup.html')

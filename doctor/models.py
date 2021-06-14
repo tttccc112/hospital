@@ -1,5 +1,10 @@
+import random
 from django.db import models
 # Create your models here.
+
+def random_mail():
+    return str(random.randint(10000, 99999)) + "@163.com"
+
 
 class Remark(models.Model):
     """
@@ -7,12 +12,13 @@ class Remark(models.Model):
     """
     remark_id = models.CharField(max_length=50,primary_key=True,verbose_name="评价id")
     diagnose_id = models.ForeignKey("patient.Diagnose",on_delete=models.CASCADE,verbose_name="诊断id")
+    doctor_id = models.ForeignKey("DoctorBase",on_delete=models.CASCADE,verbose_name="医生id",default="10001") # default must?
     remark_date = models.DateField(verbose_name="评价时间")
     remark = models.TextField(verbose_name="评价内容")
     score = models.FloatField(verbose_name="评价得分")
 
     class Meta:
-        verbose_name = verbose_name_plural = "药品价格信息"
+        verbose_name = verbose_name_plural = "医生评价信息"
 
     @classmethod
     def get_all(cls):
@@ -65,6 +71,7 @@ class CheckItem(models.Model):
     check_id = models.CharField(max_length=50,primary_key=True,verbose_name="检查项目id")
     check_name = models.CharField(max_length=50,verbose_name="检查项目名字")
     check_price = models.IntegerField(verbose_name="检查价格")
+    check_info = models.CharField(max_length=100,verbose_name="检查相关信息")
 
     class Meta:
         verbose_name = verbose_name_plural = "检查价格"
@@ -85,6 +92,7 @@ class DoctorBase(models.Model):
     # dept_id = models.ForeignKey("Department",on_delete=models.CASCADE,verbose_name="科室号")
     dept_id = models.IntegerField(verbose_name="科室号")
     doc_title = models.CharField(max_length=50,verbose_name="医生职称")
+    doc_mail = models.EmailField(verbose_name="医生邮箱",default=random_mail)
     password = models.CharField(max_length=50,verbose_name="密码")  # 与Patient一致
 
     class Meta:
